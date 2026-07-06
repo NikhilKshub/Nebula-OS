@@ -1,7 +1,13 @@
 # Nebula OS
-> Built for the Stardance Hack Club WebOS Challenge.
+Built for the **Hack Club Stardance WebOS Challenge**
+
+![HTML](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
 Nebula OS is a browser-based desktop experience inspired by operating systems, built entirely with vanilla HTML, CSS, and JavaScript. It combines a neo-brutalist interface with interactive apps, hidden discoveries, persistent state, and playful system simulations. It features a rich, interactive desktop environment complete with window management, apps, widgets, and dynamic background effects.
+
+Nebula OS isn't intended to perfectly imitate a real operating system. Instead, it focuses on making the desktop feel playful, interactive, and rewarding to explore through hidden discoveries, dynamic widgets, and immersive effects.
 
 ![Neo-Brutalist Nebula OS Desktop](assets/screenshots/1.png)
 
