@@ -85,10 +85,26 @@ Not every interaction is immediately visible.
 
 ## Acknowledgements
 
-- Fonts provided by Google Fonts (Archivo Black, Inter, JetBrains Mono, Syne).
+- Fonts from **Google Fonts** (Archivo Black, Inter, JetBrains Mono, and Syne).
+- Thanks to the open web platform and modern browser APIs (Canvas API, Web Audio API, LocalStorage) that made this project possible.
+- Thanks to the ChatGPT, Claude, and Gemini teams for creating AI tools that assisted with brainstorming, debugging, code review, and documentation throughout development.
 
 ## Design Philosophy
 
 Nebula OS isn't meant to imitate a real operating system pixel-for-pixel.
 
 Instead, it explores what a playful desktop can feel like by mixing neo-brutalist design, small interactive details, hidden discoveries, and lightweight simulations into a single browser experience.
+
+## AI Usage
+
+Nebula OS was designed and built by me.
+
+During development, I used AI tools (ChatGPT, Claude, and Gemini) as programming assistants. AI was used to:
+
+- Brainstorm ideas and explore different implementation approaches.
+- Help investigate and fix bugs, ranging from small issues to larger debugging sessions.
+- Review code and suggest improvements or refactors.
+- Generate code comments and documentation to make the codebase easier to read and maintain.
+- Explain concepts, edge cases, and implementation details while developing features.
+
+All product decisions, UI/UX design, feature selection, architecture, integration, testing, and the final implementation were completed, reviewed, and verified by me.
