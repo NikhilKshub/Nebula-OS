@@ -9,6 +9,7 @@ Nebula OS is a browser-based desktop experience inspired by operating systems, b
 
 Nebula OS isn't intended to perfectly imitate a real operating system. Instead, it focuses on making the desktop feel playful, interactive, and rewarding to explore through hidden discoveries, dynamic widgets, and immersive effects.
 
+## Desktop Preview
 ![Neo-Brutalist Nebula OS Desktop](assets/screenshots/1.png)
 
 ### Gallery
