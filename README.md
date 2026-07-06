@@ -2,7 +2,20 @@
 
 Nebula OS is a fully self-contained, single-page web operating system built with vanilla web technologies. It features a rich, interactive desktop environment complete with window management, apps, widgets, and dynamic background effects.
 
-![Nebula OS Desktop](assets/screenshots/devlog-3.png)
+![Neo-Brutalist Nebula OS Desktop](assets/screenshots/1.png)
+
+### Gallery
+
+<p align="center">
+  <img src="assets/screenshots/2.png" width="45%">
+  &nbsp;
+  <img src="assets/screenshots/3.png" width="45%">
+</p>
+<p align="center">
+  <img src="assets/screenshots/7.png" width="45%">
+  &nbsp;
+  <img src="assets/screenshots/8.png" width="45%">
+</p>
 
 ## Features
 
