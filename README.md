@@ -7,16 +7,29 @@ Nebula OS is a browser-based desktop experience inspired by operating systems, b
 
 ### Gallery
 
-<p align="center">
-  <img src="assets/screenshots/2.png" width="45%">
-  &nbsp;
-  <img src="assets/screenshots/3.png" width="45%">
-</p>
-<p align="center">
-  <img src="assets/screenshots/7.png" width="45%">
-  &nbsp;
-  <img src="assets/screenshots/5.png" width="45%">
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/2.png" width="450"><br>
+      <sub><b>Interactive Terminal</b></sub>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/3.png" width="450"><br>
+      <sub><b>Vinyl Music Player</b></sub>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/7.png" width="450"><br>
+      <sub><b>Desktop Multitasking</b></sub>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/5.png" width="450"><br>
+      <sub><b>Canvas Paint App</b></sub>
+    </td>
+  </tr>
+</table>
 
 ## Features
 
