@@ -83,17 +83,17 @@ That's it!
 - **Hidden Features**: Experiment with the Terminal, Calculator, and dock.
 Not every interaction is immediately visible.
 
-## Acknowledgements
-
-- Fonts from **Google Fonts** (Archivo Black, Inter, JetBrains Mono, and Syne).
-- Thanks to the open web platform and modern browser APIs (Canvas API, Web Audio API, LocalStorage) that made this project possible.
-- Thanks to the ChatGPT, Claude, and Gemini teams for creating AI tools that assisted with brainstorming, debugging, code review, and documentation throughout development.
-
 ## Design Philosophy
 
 Nebula OS isn't meant to imitate a real operating system pixel-for-pixel.
 
 Instead, it explores what a playful desktop can feel like by mixing neo-brutalist design, small interactive details, hidden discoveries, and lightweight simulations into a single browser experience.
+
+## Acknowledgements
+
+- Fonts from **Google Fonts** (Archivo Black, Inter, JetBrains Mono, and Syne).
+- Thanks to the open web platform and modern browser APIs (Canvas API, Web Audio API, LocalStorage) that made this project possible.
+- Thanks to the ChatGPT, Claude, and Gemini teams for creating AI tools that assisted with brainstorming, debugging, code review, and documentation throughout development.
 
 ## AI Usage
 
