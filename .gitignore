@@ -1,0 +1,47 @@
+# ── Build outputs ──────────────────────────────────────────────
+dist/
+build/
+*.min.js
+*.min.css
+
+# ── Dependencies ───────────────────────────────────────────────
+node_modules/
+
+# ── Internal / planning ────────────────────────────────────────
+.agents/
+devlogs/
+
+# ── Backup files ───────────────────────────────────────────────
+*-1.html
+*-1.js
+*-1.css
+*-1/
+*.bak
+*.backup
+*.tmp
+*.orig
+
+# ── OS noise ───────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ── Editor / IDE ───────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-workspace
+*.code-workspace
+
+# ── Logs ───────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+
+# ── Secrets / environment ──────────────────────────────────────
+.env
+.env.*
+secrets.*
