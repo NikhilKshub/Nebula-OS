@@ -78,7 +78,7 @@ I got to know about Stardance from Hack Club through a friend. He suggested I cr
 
 ## **The Redesign Journey**
 
-At the start of the project, I wanted to create something inspired by space — a desktop background with orbiting planets and stars. I also built a calculator inspired by space and orbital rotation (this concept idea was mine and I actually did so much brainstorming on how to use it). But working on the project started to feel boring, because the simple, minimal space theme wasn't landing the way I wanted, and the calculator design also had a lot of usability flaws. So I completely redesigned it into something different, then redesigned it again into a neo-brutalist theme — though I was still inspired by that original space-themed blackhole website. That's why I named it "Nebula," and kept the wormhole/blackhole as a core feature.
+At the start of the project, I wanted to create something inspired by space — a desktop background with orbiting planets and stars. I also built a calculator inspired by space and orbital rotation (this concept idea was mine and I actually did so much brainstorming with ai on how to implement it and use it). But working on the project started to feel boring, because the simple, minimal space theme wasn't landing the way I wanted, and the calculator design also had a lot of usability flaws. So I completely redesigned it into something different, then redesigned it again into a neo-brutalist theme — though I was still inspired by that original space-themed blackhole website. That's why I named it "Nebula," and kept the wormhole/blackhole as a core feature.
 
 ## **The Hardest Part**
 
