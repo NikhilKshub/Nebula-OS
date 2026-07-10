@@ -52,7 +52,7 @@ Nebula OS is a browser-based desktop experience inspired by operating systems â€
   <tr>
     <td colspan="2" align="center">
       <img src="assets/latest%20webos%20images/wormhole.png" width="600"><br>
-      <sub><b>Wormhole / Singularity â€” try it if you dare</b></sub>
+      <sub><b>Wormhole / Singularity</b></sub>
     </td>
   </tr>
 </table>
