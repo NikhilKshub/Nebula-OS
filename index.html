@@ -29,50 +29,8 @@
     <!-- DESKTOP -->
     <div id="desktop" style="display: none">
       <!-- BACKGROUND -->
-      <div id="desktop-bg">
-        <!-- Layer 0: Time-of-day tint -->
-        <div id="desktop-tint"></div>
+      <div id="desktop-bg"></div>
 
-        <!-- Layer 1: Grid -->
-        <div class="bg-grid" id="bg-grid"></div>
-
-        <!-- Layer 2: Large coloured geometry — editorial composition -->
-        <div class="bg-geo bg-arc bg-arc-1"></div>
-        <div class="bg-geo bg-arc bg-arc-2"></div>
-        <div class="bg-geo bg-wash bg-wash-1"></div>
-        <div class="bg-geo bg-wash bg-wash-2"></div>
-
-        <!-- Layer 3: Existing decorative shapes — upgraded -->
-        <div class="bg-shape bg-starburst bg-starburst-right">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <polygon
-              points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35"
-            />
-          </svg>
-        </div>
-        <div class="bg-shape bg-starburst bg-starburst-left">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <polygon
-              points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35"
-            />
-          </svg>
-        </div>
-        <div class="bg-shape bg-circle-outline"></div>
-        <div class="bg-shape bg-diagonals"></div>
-
-        <!-- Layer 4: Sparse construction marks -->
-        <div class="bg-mark bg-mark-cross" style="top: 12%; left: 18%"></div>
-        <div class="bg-mark bg-mark-cross" style="top: 78%; left: 72%"></div>
-        <div class="bg-mark bg-mark-cross" style="top: 45%; left: 92%"></div>
-        <div class="bg-mark bg-mark-dot" style="top: 8%; left: 52%"></div>
-        <div class="bg-mark bg-mark-dot" style="top: 88%; left: 38%"></div>
-        <div class="bg-mark bg-mark-dot" style="top: 35%; left: 8%"></div>
-        <div class="bg-mark bg-mark-matrix" style="top: 68%; left: 85%"></div>
-        <div class="bg-mark bg-mark-matrix" style="top: 18%; left: 42%"></div>
-
-        <!-- Layer 5: Gravity rings (injected by JS) -->
-        <div id="ambient-rings"></div>
-      </div>
 
       <!-- WORMHOLE CANVAS LAYER -->
       <canvas
@@ -194,6 +152,15 @@
           </div>
           <div class="desk-icon-label">SNAKE</div>
         </div>
+        <div class="desk-icon" data-app="pomodoro">
+          <div class="desk-icon-box" style="background: #ff8c00">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="desk-icon-label">FOCUS</div>
+        </div>
       </div>
 
       <!-- WIDGETS -->
@@ -221,51 +188,23 @@
           </div>
           <div class="telemetry-row">
             <span class="t-label">STATUS</span
-            ><span class="t-value" id="tel-status">NOMINAL</span>
+            ><span class="t-value">NOMINAL</span>
           </div>
         </div>
 
-        <!-- 2. Reality Monitor (Medium) -->
-        <div class="widget widget-reality">
-          <div class="widget-header">REALITY MONITOR</div>
-          <div class="telemetry-row">
-            <span class="t-label">THREAT LEVEL</span
-            ><span class="t-value" id="mon-threat" style="color: var(--green)"
-              >LOW</span
-            >
+        <!-- 2. Quick Notes Sticky Widget -->
+        <div class="widget widget-notes-sticky">
+          <div class="widget-header">QUICK NOTES</div>
+          <textarea
+            id="sticky-notes-input"
+            class="sticky-notes-textarea"
+            placeholder="Type a note..."
+            spellcheck="false"
+          ></textarea>
+          <div class="sticky-notes-footer">
+            <span class="sticky-notes-count" id="sticky-char-count">0 chars</span>
+            <button class="sticky-notes-clear" id="sticky-notes-clear">CLEAR</button>
           </div>
-          <div class="telemetry-row">
-            <span class="t-label">WORMHOLE</span
-            ><span class="t-value" id="mon-wormhole">DORMANT</span>
-          </div>
-          <div class="telemetry-row">
-            <span class="t-label">ANOMALIES</span
-            ><span class="t-value" id="mon-anomalies">0</span>
-          </div>
-          <div class="widget-divider"></div>
-          <div class="mission-label">LAST EVENT</div>
-          <div class="event-text" id="mon-lastevent">
-            Boot Sequence Complete
-          </div>
-        </div>
-
-        <!-- 3. Nebula Broadcast (Large) -->
-        <div class="widget widget-broadcast">
-          <div class="widget-header">NEBULA BROADCAST</div>
-          <div class="broadcast-content" id="bc-content">
-            <div class="mission-text" id="bc-text">
-              Establishing connection to Nebula Network...
-            </div>
-            <div
-              class="broadcast-actions"
-              id="bc-actions"
-              style="display: none"
-            >
-              <button class="broadcast-btn" id="bc-btn-1">ACCEPT</button>
-              <button class="broadcast-btn" id="bc-btn-2">IGNORE</button>
-            </div>
-          </div>
-          <div class="net-message" id="bc-subtext">Standing by...</div>
         </div>
       </div>
 
@@ -289,6 +228,9 @@
         <div class="dock-item" data-app="game">
           <div class="dock-box" style="background: #38e54d">🎮</div>
         </div>
+        <div class="dock-item" data-app="pomodoro">
+          <div class="dock-box" style="background: #ff8c00">⏱</div>
+        </div>
         <div class="dock-divider"></div>
         <div class="dock-item" id="wormhole-trigger">
           <div class="dock-box wormhole-box">🕳</div>
@@ -300,11 +242,16 @@
         <div class="ctx-item" data-action="refresh">↻ REFRESH</div>
         <div class="ctx-item" data-action="arrange">▣ ARRANGE</div>
         <div class="ctx-divider"></div>
+        <div class="ctx-item" data-action="wallpaper">🖼 REPLACE WALLPAPER</div>
+        <div class="ctx-divider"></div>
         <div class="ctx-item" data-action="terminal">⌘ TERMINAL</div>
         <div class="ctx-item" data-action="calc">⊕ CALCULATOR</div>
         <div class="ctx-divider"></div>
         <div class="ctx-item" data-action="about">ⓘ ABOUT</div>
       </div>
+
+      <!-- Hidden wallpaper file picker -->
+      <input type="file" id="wallpaper-input" accept="image/*" style="display:none;">
 
       <!-- CONFIRM MODAL -->
       <div id="confirm-overlay" style="display: none">
@@ -419,7 +366,7 @@
               </div>
               <div class="vinyl-arm" id="vinyl-arm"></div>
             </div>
-            <div class="visualizer" id="visualizer">
+            <div class="visualizer">
               <div class="viz-bar"></div>
               <div class="viz-bar"></div>
               <div class="viz-bar"></div>
@@ -459,7 +406,7 @@
               />
             </div>
           </div>
-          <div class="music-playlist" id="music-playlist">
+          <div class="music-playlist">
             <div class="playlist-header">
               <span>PLAYLIST</span>
               <button
@@ -703,6 +650,84 @@
               STOP
             </button>
             <div class="game-hint">MANUAL OVERRIDE: ARROW KEYS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POMODORO TIMER -->
+      <div
+        class="window"
+        id="window-pomodoro"
+        data-default-w="320"
+        data-default-h="460"
+        style="top: 80px; left: 500px; display: none"
+      >
+        <div class="window-header" style="background: #ff8c00">
+          <div class="window-title">
+            <span class="win-icon">⏱</span>
+            <span>FOCUS TIMER</span>
+          </div>
+          <div class="window-controls">
+            <button class="win-btn btn-min">−</button>
+            <button class="win-btn btn-max">□</button>
+            <button class="win-btn btn-close">✕</button>
+          </div>
+        </div>
+        <div class="window-body pomo-body">
+          <div class="pomo-modes">
+            <button class="pomo-mode-btn active" data-mode="focus">FOCUS</button>
+            <button class="pomo-mode-btn" data-mode="short">SHORT BREAK</button>
+            <button class="pomo-mode-btn" data-mode="long">LONG BREAK</button>
+            <button class="pomo-mode-btn" data-mode="custom">CUSTOM</button>
+          </div>
+          <div class="pomo-timer-display" id="pomo-display">25:00</div>
+          <div class="pomo-label" id="pomo-label">FOCUS SESSION</div>
+          <div class="pomo-progress-wrap">
+            <div class="pomo-progress-bar" id="pomo-progress"></div>
+          </div>
+          <div class="pomo-controls">
+            <button class="pomo-btn pomo-start" id="pomo-start">START</button>
+            <button class="pomo-btn pomo-reset" id="pomo-reset">RESET</button>
+          </div>
+          <div class="pomo-sessions">
+            <span class="pomo-sessions-label">SESSIONS COMPLETED</span>
+            <span class="pomo-sessions-count" id="pomo-sessions">0</span>
+          </div>
+
+          <!-- Custom Time Overlay -->
+          <div class="pomo-custom-overlay" id="pomo-custom-overlay" style="display: none;">
+            <div class="pomo-custom-box">
+              <div class="pomo-custom-title">SET CUSTOM TIME</div>
+
+              <div class="pomo-custom-type-toggle">
+                <input type="radio" id="ctype-focus" name="ctype" value="focus" checked>
+                <label for="ctype-focus">FOCUS</label>
+                <input type="radio" id="ctype-break" name="ctype" value="break">
+                <label for="ctype-break">BREAK</label>
+              </div>
+              
+              <div class="pomo-custom-inputs">
+                <div class="pomo-time-group">
+                  <input type="number" id="pomo-custom-h" min="0" max="99" value="0">
+                  <label>HR</label>
+                </div>
+                <div class="pomo-time-sep">:</div>
+                <div class="pomo-time-group">
+                  <input type="number" id="pomo-custom-m" min="0" max="59" value="10">
+                  <label>MIN</label>
+                </div>
+                <div class="pomo-time-sep">:</div>
+                <div class="pomo-time-group">
+                  <input type="number" id="pomo-custom-s" min="0" max="59" value="0">
+                  <label>SEC</label>
+                </div>
+              </div>
+
+              <div class="pomo-custom-actions">
+                <button class="pomo-custom-btn btn-cancel" id="pomo-custom-cancel">CANCEL</button>
+                <button class="pomo-custom-btn btn-set" id="pomo-custom-set">SET</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

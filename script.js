@@ -1,11 +1,8 @@
 // ==================== MODULE STATE ====================
-// These are kept module-level (not on window) to avoid polluting the global scope.
 const _sessionApps = new Set();
 let _isTermAnimRunning = false;
 
 // ==================== SANITIZE HTML (P2 XSS Fix) ====================
-// Allows safe formatting tags (bold, italic, paragraphs, lists, line breaks).
-// Strips ALL event handlers, script tags, and javascript: href/src schemes.
 function sanitizeHtml(dirty) {
   const ALLOWED_TAGS = new Set([
     "p",
@@ -58,7 +55,6 @@ function sanitizeHtml(dirty) {
 }
 
 // ==================== SAFE LOCALSTORAGE HELPERS (P5) ====================
-// Prevents localStorage corruption from crashing startup.
 function safeInt(key, fallback = 0) {
   try {
     const v = parseInt(localStorage.getItem(key) || String(fallback), 10);
@@ -250,172 +246,8 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ==================== NEBULA WIDGETS ====================
-const ALL_DISCOVERIES = {
-  first_contact: {
-    title: "FIRST CONTACT",
-    desc: "Terminal access established.",
-  },
-  archivist: { title: "ARCHIVIST", desc: "Reality Archive updated." },
-  cosmic_artist: { title: "COSMIC ARTIST", desc: "Visual data archived." },
-  audio_engineer: {
-    title: "AUDIO ENGINEER",
-    desc: "Acoustic waveform initiated.",
-  },
-  reality_bender: {
-    title: "REALITY BENDER",
-    desc: "Universe successfully collapsed.",
-  },
-  anomaly_hunter: { title: "ANOMALY HUNTER", desc: "Hidden command executed." },
-  paradox_found: {
-    title: "PARADOX DETECTED",
-    desc: "Mathematical boundaries exceeded.",
-  },
-  app_master: {
-    title: "SYSTEM MASTER",
-    desc: "All local applications accessed.",
-  },
-  master_explorer: {
-    title: "MASTER EXPLORER",
-    desc: "Nebula systems fully explored.",
-  },
-};
-
-let activeMissions = [];
-
-const NebulaState = {
-  startTime: Date.now(),
-  integrity: 100.0,
-  anomalies: 0,
-  wormholeStatus: "DORMANT",
-
-  getSingularities: () => safeInt("nebula_singularity_count", 0),
-  getTermCmds: () => safeInt("nebula_terminal_cmds", 0),
-  getPaintSaves: () => safeInt("nebula_paint_saves", 0),
-  getNotesCreated: () => safeInt("nebula_notes_created", 0),
-  getAppsOpened: () => safeInt("nebula_apps_opened", 0),
-  getMusicSessions: () => safeInt("nebula_music_sessions", 0),
-  getLastEvent: () => {
-    try {
-      return (
-        localStorage.getItem("nebula_last_event") || "Boot Sequence Complete"
-      );
-    } catch (e) {
-      return "Boot Sequence Complete";
-    }
-  },
-
-  addAnomaly: () => {
-    NebulaState.anomalies++;
-    NebulaState.integrity -= 2.5;
-    if (NebulaState.integrity < 0) NebulaState.integrity = 0;
-    updateRealityMonitor();
-    if (typeof showNotification === "function")
-      showNotification("Anomaly Detected. Threat level elevated.", "warning");
-  },
-  setLastEvent: (e) => {
-    safeSetItem("nebula_last_event", e);
-    updateRealityMonitor();
-  },
-
-  getUnlockedDiscoveries: () => {
-    try {
-      return JSON.parse(localStorage.getItem("nebula_discoveries") || "[]");
-    } catch (e) {
-      return [];
-    }
-  },
-
-  unlockDiscovery: (id) => {
-    const d = NebulaState.getUnlockedDiscoveries();
-    if (!d.includes(id) && ALL_DISCOVERIES[id]) {
-      d.push(id);
-      safeSetItem("nebula_discoveries", JSON.stringify(d));
-
-      if (typeof showNotification === "function") {
-        showNotification(
-          `DISCOVERY UNLOCKED<br><b>${ALL_DISCOVERIES[id].title}</b><br>${ALL_DISCOVERIES[id].desc}`,
-          "success",
-        );
-      }
-
-      if (activeMissions.includes(id)) {
-        setTimeout(() => {
-          if (typeof showNotification === "function") {
-            showNotification(
-              `MISSION COMPLETE<br><b>${ALL_DISCOVERIES[id].title}</b><br>Explorer progress increased.`,
-              "success",
-            );
-          }
-        }, 1000);
-        activeMissions = activeMissions.filter((m) => m !== id);
-        NebulaState.setLastEvent("Mission Accomplished");
-      }
-
-      if (id !== "master_explorer") {
-        const totalKeys = Object.keys(ALL_DISCOVERIES).length - 1;
-        if (d.length >= totalKeys && !d.includes("master_explorer")) {
-          setTimeout(
-            () => NebulaState.unlockDiscovery("master_explorer"),
-            3000,
-          );
-        }
-      }
-    }
-  },
-};
-
-function getExplorerRank() {
-  let score =
-    NebulaState.getTermCmds() +
-    NebulaState.getSingularities() * 10 +
-    NebulaState.getPaintSaves() * 2 +
-    NebulaState.getNotesCreated() * 2 +
-    NebulaState.getAppsOpened() +
-    NebulaState.getMusicSessions() * 2;
-
-  if (score >= 500) return "Reality Engineer";
-  if (score >= 250) return "Architect";
-  if (score >= 100) return "Explorer";
-  if (score >= 50) return "Navigator";
-  if (score >= 10) return "Cadet";
-  return "Observer";
-}
-
-const bcHumor = [
-  "Reality remains stable despite your choices.",
-  "Explorer activity detected. Productivity not detected.",
-  "Please stop creating gravitational incidents.",
-  "Don't panic.",
-  "Are you sure you want to click that?",
-];
-
-const bcMotivation = [
-  "Small progress still bends spacetime.",
-  "Build something today.",
-  "The next breakthrough begins with curiosity.",
-  "Exploration is a continuous state.",
-];
-
-const bcLore = [
-  "Sector Alpha-7 remains under observation.",
-  "Long-range scanners report no anomalies.",
-  "Background radiation nominal.",
-  "Wormhole fluctuations detected.",
-];
-
-const bcRare = [
-  "UNKNOWN TRANSMISSION: Signal origin unavailable.",
-  "ANOMALY DETECTED: Reality fluctuation observed.",
-  "INTERCEPTED MESSAGE: Explorer activity acknowledged.",
-  "SYSTEM OBSERVATION: Curiosity levels increasing.",
-];
-
-const bcSystem = [
-  "Explorer session active.",
-  "Nebula services online.",
-  "Monitoring local reality.",
-  "Awaiting directives...",
-];
+let sessionStartTime = Date.now();
+let systemIntegrity = 100;
 
 function updateTelemetry() {
   const timeEl = document.getElementById("tel-time");
@@ -424,7 +256,7 @@ function updateTelemetry() {
       hour12: false,
     });
 
-  const uptimeSecs = Math.floor((Date.now() - NebulaState.startTime) / 1000);
+  const uptimeSecs = Math.floor((Date.now() - sessionStartTime) / 1000);
   const hrs = Math.floor(uptimeSecs / 3600);
   const mins = Math.floor((uptimeSecs % 3600) / 60);
   const secs = uptimeSecs % 60;
@@ -437,168 +269,23 @@ function updateTelemetry() {
   const uptimeEl = document.getElementById("tel-uptime");
   if (uptimeEl) uptimeEl.textContent = upStr;
 
-  NebulaState.integrity += Math.random() * 0.02 - 0.01;
-  if (NebulaState.integrity > 100) NebulaState.integrity = 100;
+  systemIntegrity += Math.random() * 0.02 - 0.01;
+  if (systemIntegrity > 100) systemIntegrity = 100;
 
   const intEl = document.getElementById("tel-integrity");
   if (intEl) {
-    intEl.textContent = NebulaState.integrity.toFixed(2) + "%";
+    intEl.textContent = systemIntegrity.toFixed(2) + "%";
     intEl.style.color =
-      NebulaState.integrity < 50
+      systemIntegrity < 50
         ? "var(--red)"
-        : NebulaState.integrity < 80
+        : systemIntegrity < 80
           ? "var(--yellow)"
           : "var(--green)";
   }
 }
 
-let currentExplorerRank = null;
-
-function updateRealityMonitor() {
-  const threatEl = document.getElementById("mon-threat");
-  const realityWidget = document.querySelector(".widget-reality");
-  let threat = "LOW";
-  let tColor = "var(--green)";
-
-  let r = getExplorerRank();
-  if (currentExplorerRank !== null && r !== currentExplorerRank) {
-    if (typeof showNotification === "function")
-      showNotification("Explorer Rank Upgraded: " + r, "success");
-  }
-  currentExplorerRank = r;
-
-  const activeApps = Array.from(document.querySelectorAll(".window")).filter(
-    (w) => w.style.display === "flex",
-  ).length;
-
-  if (NebulaState.wormholeStatus === "ACTIVE") {
-    threat = "CRITICAL";
-    tColor = "var(--red)";
-    if (realityWidget) realityWidget.classList.add("threat-pulse");
-  } else if (
-    NebulaState.anomalies > 3 ||
-    activeApps >= 3 ||
-    NebulaState.integrity < 70
-  ) {
-    threat = "ELEVATED";
-    tColor = "var(--yellow)";
-    if (realityWidget) realityWidget.classList.add("threat-pulse");
-  } else if (activeApps >= 1) {
-    threat = "MODERATE";
-    tColor = "var(--mint)";
-    if (realityWidget) realityWidget.classList.remove("threat-pulse");
-  } else {
-    if (realityWidget) realityWidget.classList.remove("threat-pulse");
-  }
-
-  if (threatEl) {
-    threatEl.textContent = threat;
-    threatEl.style.color = tColor;
-  }
-
-  const wormEl = document.getElementById("mon-wormhole");
-  if (wormEl) wormEl.textContent = NebulaState.wormholeStatus;
-
-  const anomEl = document.getElementById("mon-anomalies");
-  if (anomEl) anomEl.textContent = NebulaState.anomalies;
-
-  const lastEl = document.getElementById("mon-lastevent");
-  if (lastEl) lastEl.textContent = NebulaState.getLastEvent();
-}
-
-function triggerInteractiveBroadcast() {
-  const textEl = document.getElementById("bc-text");
-  const actions = document.getElementById("bc-actions");
-  const btn1 = document.getElementById("bc-btn-1");
-  const btn2 = document.getElementById("bc-btn-2");
-  if (!textEl || !actions) return;
-
-  const rand = Math.random();
-  if (rand < 0.5) {
-    textEl.textContent = "TRANSMISSION RECEIVED: Unknown source detected.";
-    btn1.textContent = "VIEW";
-    btn2.textContent = "IGNORE";
-    btn1.onclick = () =>
-      setBroadcast("Transmission decoded: You are not alone.");
-    btn2.onclick = () => setBroadcast("Transmission ignored.");
-  } else {
-    textEl.textContent = "ANOMALY DETECTED: Investigate Reality Monitor.";
-    btn1.textContent = "INVESTIGATE";
-    btn2.textContent = "IGNORE";
-    btn1.onclick = () => setBroadcast("Investigating anomaly source...");
-    btn2.onclick = () => setBroadcast("Anomaly ignored.");
-  }
-
-  actions.style.display = "flex";
-}
-
-function setBroadcast(text) {
-  const textEl = document.getElementById("bc-text");
-  const actions = document.getElementById("bc-actions");
-  if (textEl) textEl.textContent = text;
-  if (actions) actions.style.display = "none";
-}
-
-function rotateBroadcast() {
-  const rand = Math.random();
-
-  if (rand < 0.02) {
-    setBroadcast(bcRare[Math.floor(Math.random() * bcRare.length)]);
-    return;
-  }
-
-  if (rand < 0.1) {
-    triggerInteractiveBroadcast();
-    return;
-  }
-
-  if (rand < 0.4) {
-    const d = NebulaState.getUnlockedDiscoveries();
-    const available = Object.keys(ALL_DISCOVERIES).filter(
-      (k) => k !== "master_explorer" && !d.includes(k),
-    );
-
-    if (available.length > 0) {
-      const missionId = available[Math.floor(Math.random() * available.length)];
-      const actions = {
-        first_contact: "Open Terminal",
-        archivist: "Create a Note",
-        cosmic_artist: "Save a Painting",
-        audio_engineer: "Play a Music File",
-        reality_bender: "Trigger a Singularity",
-        anomaly_hunter: "Discover a Hidden Command",
-        paradox_found: "Trigger a Calculator Paradox",
-        app_master: "Open Every App",
-      };
-
-      if (!activeMissions.includes(missionId)) {
-        activeMissions.push(missionId);
-      }
-      setBroadcast(`Mission Available: ${actions[missionId]}`);
-      return;
-    }
-  }
-
-  // Random Reality Distortion
-  if (Math.random() < 0.1) {
-    const bg = document.getElementById("desktop-bg");
-    if (bg) {
-      bg.classList.add("reality-distorting");
-      setTimeout(() => bg.classList.remove("reality-distorting"), 320);
-    }
-  }
-
-  const categories = [bcHumor, bcMotivation, bcLore, bcSystem];
-  const category = categories[Math.floor(Math.random() * categories.length)];
-  const msg = category[Math.floor(Math.random() * category.length)];
-  setBroadcast(msg);
-}
-
 setInterval(updateTelemetry, 1000);
-setInterval(rotateBroadcast, 25000);
 updateTelemetry();
-updateRealityMonitor();
-rotateBroadcast();
 
 // ==================== WINDOW MANAGEMENT ====================
 let highestZ = 500;
@@ -700,37 +387,16 @@ function openWindow(id, isRestore = false) {
   if (!win) return;
 
   if (win.style.display !== "flex") {
-    if (!isRestore) {
-      let opened = NebulaState.getAppsOpened();
-      safeSetItem("nebula_apps_opened", opened + 1);
-
-      _sessionApps.add(id);
-      const totalApps = document.querySelectorAll(".window").length;
-      if (_sessionApps.size >= totalApps && totalApps > 0) {
-        NebulaState.unlockDiscovery("app_master");
-      }
+    _sessionApps.add(id);
+    
+    if (id === "window-terminal") {
+      resetTerminal();
     }
-
-    if (id === "window-paint")
-      if (typeof setBroadcast === "function")
-        setBroadcast("Creative activity detected.");
-      else if (id === "window-terminal") {
-        if (typeof setBroadcast === "function")
-          setBroadcast("Command interface active.");
-        if (!isRestore) NebulaState.unlockDiscovery("first_contact");
-      } else if (id === "window-notes")
-        if (typeof setBroadcast === "function")
-          setBroadcast("Text recording module engaged.");
-        else if (id === "window-music")
-          if (typeof setBroadcast === "function")
-            setBroadcast("Audio interface initialized.");
-
-    if (id === "window-terminal") resetTerminal();
     if (id === "window-game") resetGameUI();
   }
 
   win.style.display = "flex";
-  void win.offsetWidth; // Force reflow to ensure animation triggers consistently
+  void win.offsetWidth; 
 
   win.style.width = win.dataset.defaultW + "px";
   win.style.height = win.dataset.defaultH + "px";
@@ -778,7 +444,6 @@ function saveOpenWindows() {
     .filter((w) => w.style.display === "flex")
     .map((w) => w.id);
   safeSetItem("nebula_open_windows", JSON.stringify(openWins));
-  updateRealityMonitor();
 }
 
 function restoreOpenWindows() {
@@ -879,8 +544,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".ctx-item").forEach((item) => {
     item.addEventListener("click", () => {
       const action = item.dataset.action;
-      if (action === "refresh") location.reload();
+     if (action === "replace-bg") document.getElementById("bg-file-input")?.click();
+    if (action === "refresh") fakeReboot();
       else if (action === "arrange") arrangeWindows();
+      else if (action === "wallpaper") {
+        // Trigger the hidden file picker
+        document.getElementById("wallpaper-input")?.click();
+      }
       else if (action === "about")
         alert(
           "NEBULA OS v1.0\nBuilt for Hack Club Stardance\n\nNeo-Brutalist WebOS",
@@ -890,86 +560,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ==================== AMBIENT EFFECTS ====================
-  // Desktop Ripple
-  desktop?.addEventListener("mousedown", (e) => {
-    if (
-      e.target.closest(".window") ||
-      e.target.closest("#context-menu") ||
-      e.target.closest("#dock") ||
-      e.target.closest("#topbar")
-    )
-      return;
-
-    for (let i = 0; i < 3; i++) {
-      setTimeout(() => {
-        const ripple = document.createElement("div");
-        ripple.className = "desktop-ripple";
-        ripple.style.left = e.clientX - 60 + "px";
-        ripple.style.top = e.clientY - 60 + "px";
-        ripple.style.width = "120px";
-        ripple.style.height = "120px";
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 1600);
-      }, i * 150);
-    }
-  });
-
-  // Gravity Rings
-  const ambientRings = document.getElementById("ambient-rings");
-  if (ambientRings) {
-    setInterval(() => {
-      if (Math.random() > 0.4) return;
-      const ring = document.createElement("div");
-      ring.className = "gravity-ring";
-      const size = 50 + Math.random() * 200;
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
-      ring.style.width = size + "px";
-      ring.style.height = size + "px";
-      ring.style.left = x - size / 2 + "px";
-      ring.style.top = y - size / 2 + "px";
-      const colors = ["#8FAEC4", "#C9887A", "#D4AF78", "#B8A9CC"];
-      ring.style.color = colors[Math.floor(Math.random() * colors.length)];
-
-      ring.animate(
-        [
-          { transform: "scale(0.5)", opacity: 0 },
-          { opacity: 0.6, offset: 0.2 },
-          { transform: "scale(2)", opacity: 0 },
-        ],
-        {
-          duration: 3000 + Math.random() * 2000,
-          easing: "ease-out",
-        },
-      ).onfinish = () => ring.remove();
-      ambientRings.appendChild(ring);
-    }, 3000);
-  }
-
-  // Dynamic Tint Cycle
-  const tintEl = document.getElementById("desktop-tint");
-  if (tintEl) {
-    const tints = [
-      "rgba(143, 174, 196, 0.05)",
-      "rgba(201, 136, 122, 0.05)",
-      "rgba(212, 175, 120, 0.05)",
-      "rgba(184, 169, 204, 0.05)",
-    ];
-    let tintIdx = 0;
-    setInterval(() => {
-      tintEl.style.background = tints[tintIdx];
-      tintIdx = (tintIdx + 1) % tints.length;
-    }, 120000); // changes every 120s based on CSS transition
-    tintEl.style.background = tints[0];
-  }
+  // ==================== AMBIENT EFFECTS (REMOVED IN REWORK) ====================
+  // Desktop Ripple, Gravity Rings, and Dynamic Tint removed.
+  // Background is now a static color — set it in style-rework.css (#desktop-bg).
 
   // Init apps
+
   initTerminal();
   initCalculator();
   initMusic();
   initNotes();
+  initPomodoro();
+  initWallpaper();
+  initStickyNotes();
+  
+  setInterval(updateTelemetry, 1000);
+  updateTelemetry();
 });
+
+// ==================== STICKY NOTES WIDGET ====================
+function initStickyNotes() {
+  const textarea = document.getElementById("sticky-notes-input");
+  const clearBtn = document.getElementById("sticky-notes-clear");
+  const charCount = document.getElementById("sticky-char-count");
+  if (!textarea) return;
+
+  // Restore saved content from localStorage
+  const saved = localStorage.getItem("nebula_sticky_notes");
+  if (saved) textarea.value = saved;
+  if (charCount) charCount.textContent = textarea.value.length + " chars";
+
+  // Save on every keystroke + update char count
+  textarea.addEventListener("input", () => {
+    safeSetItem("nebula_sticky_notes", textarea.value);
+    if (charCount) charCount.textContent = textarea.value.length + " chars";
+  });
+
+  // Clear button
+  clearBtn?.addEventListener("click", () => {
+    textarea.value = "";
+    safeSetItem("nebula_sticky_notes", "");
+    if (charCount) charCount.textContent = "0 chars";
+    textarea.focus();
+  });
+}
 
 function arrangeWindows() {
   const wins = Array.from(document.querySelectorAll(".window")).filter(
@@ -994,6 +628,53 @@ function arrangeWindows() {
     win.style.width = win.dataset.defaultW + "px";
     win.style.height = win.dataset.defaultH + "px";
     setTimeout(() => (win.style.transition = ""), 500);
+  });
+}
+
+// ==================== WALLPAPER SYSTEM ====================
+function applyWallpaper(dataUrl) {
+  const bg = document.getElementById("desktop-bg");
+  if (!bg) return;
+  // Wipe everything first — guarantees no old image lingers
+  bg.style.backgroundImage = "none";
+  bg.style.backgroundColor = "transparent";
+  void bg.offsetWidth;
+  // Apply the new wallpaper cleanly
+  bg.style.backgroundImage = `url("${dataUrl}")`;
+  bg.style.backgroundSize = "cover";
+  bg.style.backgroundPosition = "center center";
+  bg.style.backgroundRepeat = "no-repeat";
+  bg.style.backgroundColor = "";
+}
+
+function initWallpaper() {
+  // Restore saved wallpaper from localStorage on boot
+  const saved = localStorage.getItem("nebula_wallpaper");
+  if (saved) applyWallpaper(saved);
+
+  const input = document.getElementById("wallpaper-input");
+  if (!input) return;
+
+  input.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const dataUrl = evt.target.result;
+      try {
+        localStorage.setItem("nebula_wallpaper", dataUrl);
+      } catch (err) {
+        // If image is too large for localStorage, still apply it this session
+        console.warn("Wallpaper too large to persist:", err);
+      }
+      applyWallpaper(dataUrl);
+      showNotification("Wallpaper updated! ✨", "success");
+    };
+    reader.readAsDataURL(file);
+
+    // Reset input so the same file can be picked again if needed
+    input.value = "";
   });
 }
 
@@ -1098,10 +779,85 @@ let singularityActive = false;
 let singularityGhosts = [];
 let singularityParticles = [];
 let singularityFlashes = [];
-let wormholeHardTimeout = null; // P4b: cleared on normal completion
+let wormholeHardTimeout = null; 
 let singularityRAF = null;
 let singularityStartTime = null;
 let clockGlitchInterval = null;
+
+function fakeReboot() {
+  const fade = document.createElement("div");
+  fade.style.position = "fixed";
+  fade.style.top = "0";
+  fade.style.left = "0";
+  fade.style.width = "100%";
+  fade.style.height = "100%";
+  fade.style.backgroundColor = "#000";
+  fade.style.zIndex = "999999";
+  fade.style.transition = "opacity 0.8s ease";
+  fade.style.opacity = "0";
+  document.body.appendChild(fade);
+
+  setTimeout(() => {
+    fade.style.opacity = "1";
+    setTimeout(() => {
+      if (typeof singularityRAF !== 'undefined') cancelAnimationFrame(singularityRAF);
+      if (typeof clockGlitchInterval !== 'undefined') clearInterval(clockGlitchInterval);
+      
+      if (typeof singularityGhosts !== 'undefined') {
+        singularityGhosts.forEach(g => {
+           if (g.ghost && g.ghost.parentNode) g.ghost.parentNode.removeChild(g.ghost);
+        });
+        singularityGhosts = [];
+        singularityFlashes = [];
+      }
+      
+      const canvas = document.getElementById("wormhole-canvas");
+      if (canvas) {
+        canvas.style.display = "none";
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      
+      const overlay = document.getElementById("wormhole-overlay");
+      if (overlay) overlay.style.display = "none";
+      
+      singularityActive = false;
+      document.getElementById("desktop").style.display = "none";
+      document.getElementById("desktop").style.animation = "none";
+      document.querySelectorAll(".window").forEach(w => w.style.display = "none");
+
+      // Reset visibility and opacity of elements sucked into wormhole
+      const affectedSelectors = [".window", ".desk-icon", ".widget", "#dock", "#topbar", ".bg-starburst", ".bg-circle-outline", ".bg-diagonals"];
+      document.querySelectorAll(affectedSelectors.join(",")).forEach(el => {
+        el.style.visibility = "";
+        el.style.opacity = "";
+      });
+
+      saveOpenWindows();
+      
+      const boot = document.getElementById("boot-screen");
+      const fill = document.querySelector(".boot-fill");
+      const status = document.querySelector(".boot-status");
+      if (boot) {
+        boot.style.display = "flex";
+        boot.style.opacity = "1";
+        boot.style.transform = "none";
+        boot.style.transition = "none";
+        void boot.offsetWidth;
+      }
+      if (fill) {
+        fill.style.transition = "none";
+        fill.style.width = "0%";
+        void fill.offsetWidth;
+        fill.style.transition = "width 3s cubic-bezier(0.4, 0, 0.2, 1)";
+      }
+      if (status) status.textContent = "INITIALIZING...";
+      
+      fade.parentNode.removeChild(fade);
+      bootSequence();
+    }, 1200);
+  }, 50);
+}
 
 // ── entry point ──────────────────────────────────────────────────────────────
 function triggerWormhole() {
@@ -1115,7 +871,7 @@ function triggerWormhole() {
     };
     document.getElementById("confirm-no").onclick = () => {
       confirmOverlay.style.display = "none";
-      singularityActive = false; // P3 fix: reset so wormhole remains triggerable
+      singularityActive = false; 
     };
     return;
   }
@@ -1127,7 +883,7 @@ function doWormhole() {
   // P4b: Resilience guard — if browser throttles rAF (tab switch, minimize),
   // a hard timeout ensures Nebula always reloads within 12 seconds.
   wormholeHardTimeout = setTimeout(() => {
-    location.reload();
+    fakeReboot();
   }, 12000);
 
   // P4b: If user switches tabs mid-wormhole, force immediate reload on return
@@ -1136,7 +892,7 @@ function doWormhole() {
     if (singularityActive) {
       clearTimeout(wormholeHardTimeout);
       document.removeEventListener("visibilitychange", onVisibilityChange);
-      location.reload();
+      fakeReboot();
     }
   }
   document.addEventListener("visibilitychange", onVisibilityChange);
@@ -1177,53 +933,12 @@ function doWormhole() {
   singularityStartTime = Date.now();
   singularityRAF = requestAnimationFrame(singularityCoreLoop);
 
-  // ── 0.3 s  BODY shake — shakes the entire page, not any overlay ────────
+  // ── 0.7 s  Clock glitch ───────────────────────────────────────────────
   setTimeout(() => {
-    document.body.classList.add("sg-shake");
-  }, 300);
-
-  // ── 0.5 s  Widgets vibrate ─────────────────────────────────────────────
-  setTimeout(() => {
-    document
-      .querySelectorAll(".widget")
-      .forEach((w) => w.classList.add("sg-vibrate"));
-    document.getElementById("bg-grid")?.classList.add("sg-grid-bend");
-  }, 500);
-
-  // ── 0.7 s  Windows tilt + clock glitch ────────────────────────────────
-  setTimeout(() => {
-    document.querySelectorAll(".window").forEach((w) => {
-      if (getComputedStyle(w).display === "flex") w.classList.add("sg-tilt");
-    });
     startClockGlitch();
   }, 700);
 
-  // ── 1.0 s  Dock creep inward ──────────────────────────────────────────
   setTimeout(() => {
-    document.getElementById("dock")?.classList.add("sg-dock-creep");
-  }, 1000);
-
-  // ── 1.2 s  Desktop icons slide ────────────────────────────────────────
-  setTimeout(() => {
-    document
-      .querySelectorAll(".desk-icon")
-      .forEach((ic) => ic.classList.add("sg-icon-slide"));
-  }, 1200);
-
-
-  setTimeout(() => {
-    document.body.classList.remove("sg-shake");
-    // Stop CSS animations — physics takes over
-    document
-      .querySelectorAll(".sg-vibrate,.sg-tilt,.sg-dock-creep,.sg-icon-slide")
-      .forEach((el) =>
-        el.classList.remove(
-          "sg-vibrate",
-          "sg-tilt",
-          "sg-dock-creep",
-          "sg-icon-slide",
-        ),
-      );
     stopClockGlitch();
     cancelAnimationFrame(singularityRAF);
     spawnGhostsAndBeginSuction();
@@ -1276,13 +991,13 @@ function stopClockGlitch() {
 // ── accretion disk initialization ─────────────────────────────────────────────
 function initAccretionParticles() {
   singularityParticles = [];
-  for (let i = 0; i < 55; i++) {
+  for (let i = 0; i < 100; i++) {
     singularityParticles.push({
       angle: (Math.PI * 2 * i) / 55,
       radius: 85 + Math.random() * 75,
       speed: 0.018 + Math.random() * 0.026,
       size: 1.2 + Math.random() * 2.2,
-      color: Math.random() > 0.5 ? "#FFDE4D" : "#00FFAB",
+      color: ["#FFDE4D", "#00FFAB", "#B98EFF"][Math.floor(Math.random() * 3)],
       trail: [],
     });
   }
@@ -1292,7 +1007,7 @@ function initAccretionParticles() {
 function drawAccretionGlow(ctx, cx, cy, elapsed) {
   const coreR = 80;
   const pulse = Math.sin(Date.now() * 0.005);
-  const outerR = coreR + 130 + pulse * 25;
+  const outerR = coreR + 130 + pulse * 45;
 
   const grd = ctx.createRadialGradient(cx, cy, coreR - 10, cx, cy, outerR);
   grd.addColorStop(0, "rgba(255,222,77,0.85)");
@@ -1613,9 +1328,10 @@ function finalConsumption() {
 
   // Hard cut + reload
   setTimeout(() => {
-    document.body.style.background = "#000";
-    setTimeout(() => location.reload(), 200);
-  }, 850);
+    if (!document.hidden) {
+      setTimeout(() => fakeReboot(), 200);
+    }
+  }, 1200);
 }
 
 // ==================== TERMINAL ====================
@@ -1750,8 +1466,6 @@ function initTerminal() {
     Packages: ${appsCount} (web apps)
     Resolution: ${resolution}
     Browser: ${ua}
-    Discoveries: ${NebulaState.getUnlockedDiscoveries().length} / 8
-    Singularities: ${sigCount}
 </div>`;
     },
     fortune: () => {
@@ -1781,10 +1495,6 @@ function initTerminal() {
     matrix: () => {
       if (_isTermAnimRunning) return "Sequence already active.";
       _isTermAnimRunning = true;
-      if (typeof setBroadcast === "function")
-        setBroadcast("Simulation layers exposed.");
-      NebulaState.addAnomaly();
-      NebulaState.unlockDiscovery("anomaly_hunter");
       startMatrix();
       setTimeout(() => {
         _isTermAnimRunning = false;
@@ -1794,11 +1504,6 @@ function initTerminal() {
     hack: () => {
       if (_isTermAnimRunning) return "Sequence already active.";
       _isTermAnimRunning = true;
-      if (typeof setBroadcast === "function")
-        setBroadcast("Unauthorized access attempt detected.");
-      NebulaState.addAnomaly();
-      NebulaState.addAnomaly();
-      NebulaState.unlockDiscovery("anomaly_hunter");
       simulateHack();
       setTimeout(() => {
         _isTermAnimRunning = false;
@@ -1806,69 +1511,31 @@ function initTerminal() {
       return "Initiating hack sequence...";
     },
     singularity: () => {
-      let c = safeInt("nebula_singularity_count", 0);
-      safeSetItem("nebula_singularity_count", c + 1);
-      if (typeof setBroadcast === "function")
-        setBroadcast("Gravitational collapse imminent.");
-      NebulaState.wormholeStatus = "ACTIVE";
-      NebulaState.setLastEvent("Universe Collapse Successful");
-      NebulaState.unlockDiscovery("reality_bender");
-      updateRealityMonitor();
       setTimeout(triggerWormhole, 500);
       return '<span class="term-alert">SINGULARITY IMMINENT...</span>';
     },
     wormhole: () => commands.singularity(),
     reboot: () => {
-      setTimeout(() => location.reload(), 1000);
+      setTimeout(() => fakeReboot(), 1000);
       return "Rebooting...";
     },
     "sudo collapse-universe": () => commands.singularity(),
     "red-alert": () => {
-      if (typeof setBroadcast === "function")
-        setBroadcast("Emergency protocol activated.");
-      NebulaState.addAnomaly();
-      NebulaState.addAnomaly();
-      NebulaState.unlockDiscovery("anomaly_hunter");
       redAlert();
       return null;
     },
     "developer-mode": () => {
-      if (typeof setBroadcast === "function")
-        setBroadcast("Restricted diagnostics unlocked.");
-      NebulaState.addAnomaly();
-      NebulaState.unlockDiscovery("anomaly_hunter");
       return "God mode unlocked. (Not really, but it sounds cool.)";
     },
-    universe: () => {
-      if (typeof setBroadcast === "function")
-        setBroadcast("Observing local reality cluster.");
-      return "It's quite large.";
-    },
-    42: () => {
-      if (typeof setBroadcast === "function")
-        setBroadcast("Answer received. Question still missing.");
-      return "The answer to life, the universe, and everything.";
-    },
-    coffee: () => {
-      if (typeof setBroadcast === "function")
-        setBroadcast("Caffeine reserves replenished.");
-      return "☕ Error 418: I'm a teapot.";
-    },
+    universe: () => "It's quite large.",
+    42: () => "The answer to life, the universe, and everything.",
+    coffee: () => "☕ Error 418: I'm a teapot.",
     stats: () => commands.profile(),
     profile: () => {
       return `<div class="term-ascii" style="color:var(--mint)">
 EXPLORER PROFILE
 ================
-Rank: ${getExplorerRank()}
-
-Discoveries Unlocked: ${NebulaState.getUnlockedDiscoveries().length} / 8
-Apps Opened: ${NebulaState.getAppsOpened()}
-Terminal Commands: ${NebulaState.getTermCmds()}
-Universes Collapsed: ${NebulaState.getSingularities()}
-Anomalies Triggered: ${NebulaState.anomalies}
-Paint Exports: ${NebulaState.getPaintSaves()}
-Notes Created: ${NebulaState.getNotesCreated()}
-Music Sessions: ${NebulaState.getMusicSessions()}
+Terminal active.
 </div>`;
     },
   };
@@ -1946,9 +1613,6 @@ Music Sessions: ${NebulaState.getMusicSessions()}
     output.appendChild(cmdLine);
 
     if (commands[matchedCmd]) {
-      let cmds = NebulaState.getTermCmds();
-      safeSetItem("nebula_terminal_cmds", cmds + 1);
-
       const result = commands[matchedCmd](parts);
       if (result !== null) {
         const res = document.createElement("div");
@@ -2093,10 +1757,8 @@ function handleCalcOp(op) {
         case "÷":
           if (curr === 0) {
             res = "PARADOX";
-            if (NebulaState && NebulaState.addAnomaly) NebulaState.addAnomaly();
             if (typeof showNotification === "function")
               showNotification("Division by zero paradox.", "error");
-            NebulaState.unlockDiscovery("paradox_found");
           } else {
             res = prev / curr;
           }
@@ -2108,10 +1770,8 @@ function handleCalcOp(op) {
         calcCurrent =
           String(res).length > 12 ? String(res).toExponential(6) : String(res);
         if (res === 42) {
-          if (NebulaState && NebulaState.addAnomaly) NebulaState.addAnomaly();
           if (typeof showNotification === "function")
             showNotification("The answer has been found.", "success");
-          NebulaState.unlockDiscovery("paradox_found");
         }
       }
       calcPrev = null;
@@ -2138,10 +1798,8 @@ function handleCalcOp(op) {
       case "÷":
         if (curr === 0) {
           res = "PARADOX";
-          if (NebulaState && NebulaState.addAnomaly) NebulaState.addAnomaly();
           if (typeof showNotification === "function")
             showNotification("Division by zero paradox.", "error");
-          NebulaState.unlockDiscovery("paradox_found");
         } else {
           res = prev / curr;
         }
@@ -2365,10 +2023,6 @@ function removeTrack(index) {
 function playPlaylistTrack(index) {
   if (index < 0 || index >= musicPlaylist.length) return;
 
-  let sessions = NebulaState.getMusicSessions();
-  safeSetItem("nebula_music_sessions", sessions + 1);
-  NebulaState.unlockDiscovery("audio_engineer");
-
   const track = musicPlaylist[index];
   currentPlaylistIndex = index;
   renderPlaylist();
@@ -2548,9 +2202,6 @@ function initNotes() {
       safeSetItem("nebula_notes_content", editor.innerHTML);
       if (!currentNoteEdited) {
         currentNoteEdited = true;
-        let saves = NebulaState.getNotesCreated();
-        safeSetItem("nebula_notes_created", saves + 1);
-        NebulaState.unlockDiscovery("archivist");
       }
     });
   }
@@ -2610,11 +2261,16 @@ function initPaint() {
   paintCtx = canvas.getContext("2d");
 
   function resizeCanvas() {
-    if (!canvas.parentElement) return;
-    const rect = canvas.parentElement.getBoundingClientRect();
-    if (rect.width === 0 || rect.height === 0) return;
+    const parent = canvas.parentElement;
+    if (!parent) return;
 
-    // Save existing drawing
+    // clientWidth/clientHeight gives the exact inner pixel size after flex layout.
+    // Much more reliable than getBoundingClientRect() which can be called too early.
+    const w = parent.clientWidth;
+    const h = parent.clientHeight;
+    if (w === 0 || h === 0) return;
+
+    // Save existing drawing before resizing (resizing clears the canvas)
     let tempCanvas = null;
     if (canvas.width > 0 && canvas.height > 0) {
       tempCanvas = document.createElement("canvas");
@@ -2623,8 +2279,10 @@ function initPaint() {
       tempCanvas.getContext("2d").drawImage(canvas, 0, 0);
     }
 
-    canvas.width = rect.width;
-    canvas.height = rect.height;
+    // Set pixel dimensions to match the container exactly.
+    // CSS width/height:100% handles the visual fill — no need to set style.width/height.
+    canvas.width = w;
+    canvas.height = h;
 
     // Restore drawing
     if (tempCanvas) {
@@ -2645,16 +2303,18 @@ function initPaint() {
     }
   }
 
-  resizeCanvas();
+  // Run once after a short delay to let the window fully render and flex layout settle
+  requestAnimationFrame(() => requestAnimationFrame(() => resizeCanvas()));
 
   if (paintListenersBound) return;
   paintListenersBound = true;
 
-  // Use ResizeObserver to continuously track size changes
+  // Use ResizeObserver — wait one animation frame after resize to let flex settle
   const resizeObserver = new ResizeObserver(() => {
-    resizeCanvas();
+    requestAnimationFrame(() => resizeCanvas());
   });
   resizeObserver.observe(canvas.parentElement);
+
 
   canvas.addEventListener("mousedown", startPosition);
   canvas.addEventListener("mouseup", endPosition);
@@ -2694,16 +2354,12 @@ function initPaint() {
   document.getElementById("paint-undo")?.addEventListener("click", undoPaint);
 
   document.getElementById("paint-save")?.addEventListener("click", () => {
-    let saves = NebulaState.getPaintSaves();
-    safeSetItem("nebula_paint_saves", saves + 1);
-
     const link = document.createElement("a");
     link.download = "nebula_art.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
     if (typeof showNotification === "function")
       showNotification("Reality Archive Saved", "success");
-    NebulaState.unlockDiscovery("cosmic_artist");
   });
 
   document.addEventListener("keydown", (e) => {
@@ -3054,3 +2710,207 @@ function showNotification(msg, type = "success") {
 window.addEventListener("beforeunload", () => {
   if (activeAudioUrl) URL.revokeObjectURL(activeAudioUrl);
 });
+
+// ==================== POMODORO TIMER ====================
+const POMO_DURATIONS = {
+  focus: 25 * 60,   // 25 minutes
+  short: 5 * 60,    // 5 minutes
+  long: 15 * 60,    // 15 minutes
+  custom: 10 * 60,  // default custom time
+};
+
+const POMO_LABELS = {
+  focus: "FOCUS SESSION",
+  short: "SHORT BREAK",
+  long: "LONG BREAK",
+  custom: "CUSTOM TIMER",
+};
+
+let pomoState = {
+  mode: "focus",
+  timeLeft: POMO_DURATIONS.focus,
+  totalTime: POMO_DURATIONS.focus,
+  isRunning: false,
+  sessions: 0,
+  interval: null,
+  customType: "focus",
+};
+
+function pomoFormatTime(secs) {
+  const h = Math.floor(secs / 3600);
+  const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
+  const s = String(secs % 60).padStart(2, "0");
+  if (h > 0) {
+    return `${h}:${m}:${s}`;
+  }
+  return `${m}:${s}`;
+}
+
+function pomoUpdateDisplay() {
+  const display = document.getElementById("pomo-display");
+  const label = document.getElementById("pomo-label");
+  const progress = document.getElementById("pomo-progress");
+  const sessions = document.getElementById("pomo-sessions");
+
+  if (display) display.textContent = pomoFormatTime(pomoState.timeLeft);
+  if (label) label.textContent = POMO_LABELS[pomoState.mode];
+  if (progress) {
+    const pct = (pomoState.timeLeft / pomoState.totalTime) * 100;
+    progress.style.width = pct + "%";
+  }
+  if (sessions) sessions.textContent = pomoState.sessions;
+}
+
+function pomoBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    osc.type = "sine";
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.8);
+  } catch (e) {}
+}
+
+function pomoTick() {
+  if (pomoState.timeLeft <= 0) {
+    clearInterval(pomoState.interval);
+    pomoState.interval = null;
+    pomoState.isRunning = false;
+
+    pomoBeep();
+
+    const startBtn = document.getElementById("pomo-start");
+    if (startBtn) startBtn.textContent = "START";
+
+    const isFocus = pomoState.mode === "focus" || (pomoState.mode === "custom" && pomoState.customType === "focus");
+
+    // If focus session ended, count it
+    if (isFocus) {
+      pomoState.sessions++;
+      showNotification("Focus session complete! Take a break. 🎉", "success");
+      // Auto switch to short break — use pomoSetMode to avoid showing the custom overlay
+      pomoSetMode("short");
+    } else {
+      showNotification("Break over! Time to focus. ⚡", "warning");
+      // Auto switch to focus — use pomoSetMode to avoid showing the custom overlay
+      pomoSetMode("focus");
+    }
+    return;
+  }
+
+  pomoState.timeLeft--;
+  pomoUpdateDisplay();
+}
+
+function pomoStart() {
+  const btn = document.getElementById("pomo-start");
+  if (pomoState.isRunning) {
+    // Pause
+    clearInterval(pomoState.interval);
+    pomoState.interval = null;
+    pomoState.isRunning = false;
+    if (btn) btn.textContent = "RESUME";
+  } else {
+    // Start or resume
+    pomoState.isRunning = true;
+    pomoState.interval = setInterval(pomoTick, 1000);
+    if (btn) btn.textContent = "PAUSE";
+  }
+}
+
+function pomoReset() {
+  clearInterval(pomoState.interval);
+  pomoState.interval = null;
+  pomoState.isRunning = false;
+  pomoState.timeLeft = pomoState.totalTime;
+
+  const btn = document.getElementById("pomo-start");
+  if (btn) btn.textContent = "START";
+
+  pomoUpdateDisplay();
+}
+
+function pomoSetMode(mode) {
+  clearInterval(pomoState.interval);
+  pomoState.interval = null;
+  pomoState.isRunning = false;
+  pomoState.mode = mode;
+  pomoState.timeLeft = POMO_DURATIONS[mode];
+  pomoState.totalTime = POMO_DURATIONS[mode];
+
+  // Update active button
+  document.querySelectorAll(".pomo-mode-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.mode === mode);
+  });
+
+  const startBtn = document.getElementById("pomo-start");
+  if (startBtn) startBtn.textContent = "START";
+
+  pomoUpdateDisplay();
+}
+
+function pomoSwitchMode(mode) {
+  if (mode === "custom") {
+    const overlay = document.getElementById("pomo-custom-overlay");
+    const hInput = document.getElementById("pomo-custom-h");
+    const mInput = document.getElementById("pomo-custom-m");
+    const sInput = document.getElementById("pomo-custom-s");
+    if (overlay && hInput && mInput && sInput) {
+      const totalSecs = POMO_DURATIONS.custom || (10 * 60);
+      hInput.value = Math.floor(totalSecs / 3600);
+      mInput.value = Math.floor((totalSecs % 3600) / 60);
+      sInput.value = Math.floor(totalSecs % 60);
+      overlay.style.display = "flex";
+      setTimeout(() => mInput.focus(), 100);
+    }
+    return;
+  }
+  
+  pomoSetMode(mode);
+}
+
+function initPomodoro() {
+  document.getElementById("pomo-start")?.addEventListener("click", pomoStart);
+  document.getElementById("pomo-reset")?.addEventListener("click", pomoReset);
+
+  document.querySelectorAll(".pomo-mode-btn").forEach((btn) => {
+    btn.addEventListener("click", () => pomoSwitchMode(btn.dataset.mode));
+  });
+
+  // Custom Time Overlay Listeners
+  document.getElementById("pomo-custom-cancel")?.addEventListener("click", () => {
+    const overlay = document.getElementById("pomo-custom-overlay");
+    if (overlay) overlay.style.display = "none";
+  });
+
+  document.getElementById("pomo-custom-set")?.addEventListener("click", () => {
+    const hInput = document.getElementById("pomo-custom-h");
+    const mInput = document.getElementById("pomo-custom-m");
+    const sInput = document.getElementById("pomo-custom-s");
+    const overlay = document.getElementById("pomo-custom-overlay");
+    if (hInput && mInput && sInput && overlay) {
+      const h = parseInt(hInput.value) || 0;
+      const m = parseInt(mInput.value) || 0;
+      const s = parseInt(sInput.value) || 0;
+      const totalSecs = (h * 3600) + (m * 60) + s;
+      
+      if (totalSecs <= 0) return; // invalid input
+
+      const isBreak = document.getElementById("ctype-break")?.checked;
+      pomoState.customType = isBreak ? "break" : "focus";
+      POMO_LABELS.custom = isBreak ? "CUSTOM BREAK" : "CUSTOM FOCUS";
+
+      POMO_DURATIONS.custom = totalSecs;
+      overlay.style.display = "none";
+      pomoSetMode("custom");
+    }
+  });
+
+  pomoUpdateDisplay();
+}

@@ -1,94 +1,76 @@
-# Nebula OS
->Built for the **Hack Club Stardance WebOS Challenge**
+# **Nebula OS**
 
-![HTML](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+\>Built for the **Hack Club Stardance WebOS Challenge**
 
-Nebula OS is a browser-based desktop experience inspired by operating systems, built entirely with vanilla HTML, CSS, and JavaScript. It combines a neo-brutalist interface with interactive apps, hidden discoveries, persistent state, and playful system simulations. It features a rich, interactive desktop environment complete with window management, apps, widgets, and dynamic background effects.
+Nebula OS is a browser-based desktop experience inspired by operating systems — built as a playful, colorful desktop full of working apps, hidden details, and one feature that pulls the whole thing into a blackhole. 
 
-Nebula OS isn't intended to perfectly imitate a real operating system. Instead, it focuses on making the desktop feel playful, interactive, and rewarding to explore through hidden discoveries, dynamic widgets, and immersive effects.
+## **Features**
 
-## Desktop Preview
-![Neo-Brutalist Nebula OS Desktop](assets/screenshots/1.png)
+* **Window Management** — draggable windows with minimize, maximize, restore, focus tracking, and persistent position  
+* **Terminal** — functional command-line interface, try `help` to see available commands  
+* **Music Player** — vinyl-style player with real-time audio visualization (Web Audio API), load your own local audio files  
+* **Calculator** — desktop calculator app  
+* **Notes** — persistent text editor with local saving  
+* **Paint** — canvas-based drawing app with tools/colors, save your creations  
+* **Snake Game** — classic snake, built directly into the OS  
+* **Custom Wallpapers** — replace the desktop background with your own image, persists across sessions  
+* **Quick Notes Widget** — sticky-note style widget on the desktop, live character counter, autosaves every keystroke  
+* **Pomodoro Timer** — default 25-minute focus/break cycle, plus a custom timer mode for both focus and break sessions  
+* **Boot Sequence** — animated startup sequence  
+* **Wormhole / Singularity** — hidden in the dock, pulls the entire desktop into a blackhole
 
-### Gallery
+## **Why I built this**
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <img src="assets/screenshots/2.png" width="450"><br>
-      <sub><b>Interactive Terminal</b></sub>
-    </td>
-    <td align="center">
-      <img src="assets/screenshots/3.png" width="450"><br>
-      <sub><b>Vinyl Music Player</b></sub>
-    </td>
-  </tr>
+I got to know about Stardance from Hack Club through a friend. He suggested I create projects, since I always liked creating and experimenting with things — hardware, apps, websites — but never actually finished most of them because of various issues. When my friend told me I could create things and earn rewards, it got me excited, so I joined the platform. I looked around for a while before understanding how it works, and found the Missions section. At that time, I really liked the idea of a webOS project — it sounded interesting. Around the same time, I saw a reel of someone creating a space-themed website that also had a blackhole feature. Because of these two things, I got into building a webOS, and my first real goal was to implement a blackhole feature — I just thought it would look so cool. That's how I got into this project.
 
-  <tr>
-    <td align="center">
-      <img src="assets/screenshots/7.png" width="450"><br>
-      <sub><b>Desktop Multitasking</b></sub>
-    </td>
-    <td align="center">
-      <img src="assets/screenshots/5.png" width="450"><br>
-      <sub><b>Canvas Paint App</b></sub>
-    </td>
-  </tr>
-</table>
+## **The Redesign Journey**
 
-## Features
+At the start of the project, I wanted to create something inspired by space — a desktop background with orbiting planets and stars. I also built a calculator inspired by space and orbital rotation (this concept idea was mine and I actually did so much brainstorming on how to use it). But working on the project started to feel boring, because the simple, minimal space theme wasn't landing the way I wanted, and the calculator design also had a lot of usability flaws. So I completely redesigned it into something different, then redesigned it again into a neo-brutalist theme — though I was still inspired by that original space-themed blackhole website. That's why I named it "Nebula," and kept the wormhole/blackhole as a core feature.
 
-- **Window Management**: Draggable desktop windows with minimize, maximize, restore, focus management, and persistent positions.
-- **Terminal**: A functional command-line interface with various commands (try `help`).
-- **Music Player**: A virtual vinyl player with audio visualization (Web Audio API). Load local audio files to play.
-- **Calculator**: A desktop calculator with hidden discoveries and special system events.
-- **Notes**: A persistent rich-text editor with local saving.
-- **Paint**: A canvas-based drawing application with tools, colors, and the ability to save your creations.
-- **Snake Game (Ouroboros Simulation)**: A classic snake game built directly into the OS.
-- **Desktop Widgets**: Live telemetry, reality monitor, and broadcast panels that react to system activity.
-- **Boot Sequence**: An immersive startup animation.
-- **Wormhole / Singularity**: A special feature hidden in the dock—try it if you dare.
-- **Discoveries & Missions**: Hidden interactions, unlockable discoveries, explorer ranks, and secret terminal commands encourage exploration.
+## **The Hardest Part**
 
-## Technologies Used
+Honestly, at the start, the hardest thing was building the space-inspired calculator. I made the numbers and operators rotate in orbit around a center screen, but the rotation actually made me dizzy, so I abandoned that direction and moved on to Nebula OS. Within Nebula OS, the hardest part was getting the wormhole feature right — giving it a proper visual feel of an actual blackhole. I still haven't fully captured that realistic feel, but I think I've gotten somewhat closer to it.
 
-- **HTML5**: Structure and layout (Semantic HTML, Canvas).
-- **CSS3**: Styling, animations, flexbox/grid layouts, and custom properties (variables). No external CSS frameworks were used.
-- **Vanilla JavaScript**: Core logic, DOM manipulation, event handling, and window management. No external JS libraries or frameworks were used.
-- **Web Audio API**: For the music player's audio visualization.
-- **Web Canvas API**: Used in the Paint app, Snake game, and background/wormhole effects.
-- **LocalStorage**: Persists notes, discoveries, window state, explorer progress, and user preferences between sessions.
+## **What My WebOS Does**
 
-## Installation
+My webOS has the features, apps, and widgets you'd expect from most webOS projects, but the standout feature — one very few or no other webOS projects have — is a blackhole that sucks the entire system into it. It's a genuinely cool moment, and I think it makes the OS feel more engaging and lively overall.
+
+You can open several different types of apps, like Paint, Snake Game, Calculator, Pomodoro Timer, Terminal, and Music Player. You can change the desktop wallpaper to your liking, and there's also a Quick Notes widget that lets you write things down and auto-saves as you type. And of course, there's the wormhole feature — best experienced yourself.
+
+## **What I'd Still Improve**
+
+That said, I'm not fully happy with everything yet. The wormhole still isn't where I want it visually. The font system — especially for app labels — doesn't feel very refined, and the OS overall doesn't quite have a "premium" feel yet. Right now it's closer to a rainbow of colors, since every app has its own distinct color/theme, which is fun but not fully cohesive.
+
+## **Where to Start Exploring**
+
+I want people to test things out themselves. The first thing I'd suggest trying is the Terminal, since it's genuinely engaging. The second is the Snake game — it's simple, but still fun. Not exactly in the heavy AAA-game world, haha.
+
+## **Tech Stack**
+
+* **HTML5** — semantic structure, canvas  
+* **CSS3** — custom properties/variables, flexbox/grid, no external frameworks  
+* **Vanilla JavaScript** — DOM manipulation, event handling, window management, no external libraries/frameworks  
+* **Web Audio API** — music player visualizer  
+* **Web Canvas API** — paint, snake, wormhole effects  
+* **LocalStorage** — notes, wallpaper, pomodoro sessions, window state persistence
+
+## **Installation**
 
 Nebula OS is completely self-contained. There are no build tools or dependencies required.
 
-1. Clone or download the repository.
-2. Open `index.html` in any modern web browser.
+1. Clone or download the repository.  
+2. Open `index.html` in any modern web browser.  
 3. No installation, package manager, or build step is required.
 
-That's it!
+That's it\!
 
-## Controls & Usage
+## **AI Usage**
 
-- **Click / Drag**: Interact with icons, buttons, and drag windows by their title bars.
-- **Double Click**: Open apps from the desktop icons.
-- **Context Menu**: Right-click on the desktop to access the context menu.
-- **Terminal**: Type commands and press `Enter`.
-- **Music Player**: Click the folder icon to load an audio file, or use the drop zone.
-- **Paint**: Select a tool and color, then click and drag on the canvas.
-- **Snake Game**: Use the arrow keys to control the snake.
-- **Hidden Features**: Experiment with the Terminal, Calculator, and dock.
-Not every interaction is immediately visible.
+**Early Ideas:** AI was used heavily during the initial brainstorming phase to throw around wild concepts. For example, I thought of a calculator inspired by a space theme, with rotating orbits, and AI helped me develop the UI layout for that orbit-rotation calculator concept. I actually tried implementing it, but it made me physically dizzy to look at, and picking numbers on a rotating circle was almost frustrating, so I scrapped it immediately. Using AI to rapidly prototype and test these ideas helped me quickly figure out what didn't work.
 
-## Acknowledgements
+**Antigravity / Gemini Sessions:** I used Google's Antigravity agent and Gemini as an active pair-programming partner to build out substantial, complex systems within the OS, test many different ideas, and brainstorm. I directed the architecture and made the final calls. Specifically, the AI wrote the logic for a few features, like the wormhole and quick notes widget, and explained it to me. It also helped me remove a few features and clean up the code (including fixing a complex infinite-hang bug during the wormhole singularity sequence, and several other serious bugs).
 
-- Fonts provided by Google Fonts (Archivo Black, Inter, JetBrains Mono, Syne).
+**Debugging Help:** AI was my primary debugging tool for frustrating structural issues. At one point, I attempted to split my massive CSS into multiple smaller files, which completely broke the styling across the entire OS. I also ran into a persistent folder-name and path mismatch bug that broke my assets. In both cases, I fed the errors and file structures to the AI to help diagnose the root cause. Once the AI pointed out exactly where the logic was failing, I went in and personally executed the fixes and restructured the paths to get the OS stable again. It helped me fix a lot of bugs along the way, and made implementing new features smoother.
 
-## Design Philosophy
+**What Was Actually Mine:** While the AI did a lot of work alongside me like testing ideas, giving suggestions, and helping map out how to implement things , the product vision was entirely mine. I made all the core product decisions: choosing which features stayed and which were cut, enforcing the neo-brutalist UI redesign, and choosing the "Nebula" naming convention. I decided exactly which apps to include, how the layout should feel, and dictated the exact visual and pacing requirements for the wormhole singularity effect. I wrote codes for the implementation of features and apps , tried things and yea it was fun kind of doing it also frustrating how the bugs are coming one by one , one after another.
 
-Nebula OS isn't meant to imitate a real operating system pixel-for-pixel.
-
-Instead, it explores what a playful desktop can feel like by mixing neo-brutalist design, small interactive details, hidden discoveries, and lightweight simulations into a single browser experience.
