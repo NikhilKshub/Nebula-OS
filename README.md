@@ -1,6 +1,6 @@
 # **Nebula OS**
 
-\>Built for the **Hack Club Stardance WebOS Challenge**
+>Built for the **Hack Club Stardance WebOS Challenge**
 
 Nebula OS is a browser-based desktop experience inspired by operating systems — built as a playful, colorful desktop full of working apps, hidden details, and one feature that pulls the whole thing into a blackhole. 
 
