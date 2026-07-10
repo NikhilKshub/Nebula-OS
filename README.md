@@ -4,6 +4,59 @@
 
 Nebula OS is a browser-based desktop experience inspired by operating systems — built as a playful, colorful desktop full of working apps, hidden details, and one feature that pulls the whole thing into a blackhole. 
 
+## Gallery
+
+![Nebula OS Desktop](assets/latest%20webos%20images/main1.png)
+
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/terminal.png" width="400"><br>
+      <sub><b>Terminal</b></sub>
+    </td>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/music.png" width="400"><br>
+      <sub><b>Music Player</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/calc.png" width="400"><br>
+      <sub><b>Calculator</b></sub>
+    </td>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/notes.png" width="400"><br>
+      <sub><b>Notes</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/paint.png" width="400"><br>
+      <sub><b>Paint</b></sub>
+    </td>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/snake.png" width="400"><br>
+      <sub><b>Snake Game</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/timer.png" width="400"><br>
+      <sub><b>Pomodoro Timer</b></sub>
+    </td>
+    <td align="center">
+      <img src="assets/latest%20webos%20images/contextmenu.png" width="400"><br>
+      <sub><b>Right-Click Context Menu</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <img src="assets/latest%20webos%20images/wormhole.png" width="600"><br>
+      <sub><b>Wormhole / Singularity — try it if you dare</b></sub>
+    </td>
+  </tr>
+</table>
+
 ## **Features**
 
 * **Window Management** — draggable windows with minimize, maximize, restore, focus tracking, and persistent position  
