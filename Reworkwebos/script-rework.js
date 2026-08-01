@@ -2,7 +2,6 @@
 // written june 2025, kept adding stuff as i went
 
 // track which apps opened this session (used by terminal neofetch)
-const openedApps = new Set();
 let termAnimBusy = false;
 
 // --- localstorage helpers ---
@@ -232,7 +231,6 @@ function openWindow(id) {
   if (!win) return;
 
   if (win.style.display !== 'flex') {
-    openedApps.add(id);
     if (id === 'window-terminal') resetTerminal();
     if (id === 'window-game') resetGameUI();
   }
@@ -352,15 +350,6 @@ function initWallpaper() {
 }
 
 // --- wormhole system ---
-let wormholeAudioNodes = [];
-
-// these get overridden by script-rework.js to be silent
-function createWormholeSound() {}
-function stopWormholeSound() {
-  wormholeAudioNodes.forEach(n => { try { n.osc.stop(); n.osc.disconnect(); } catch {} });
-  wormholeAudioNodes = [];
-}
-
 let singularityActive = false;
 let singularityGhosts = [];
 let singularityParticles = [];
@@ -471,8 +460,6 @@ function doWormhole() {
       fakeReboot();
     }
   });
-
-  createWormholeSound(); // no-op in rework version
 
   const overlay = document.getElementById('wormhole-overlay');
   if (overlay) {
@@ -731,7 +718,6 @@ function singularitySuctionLoop() {
 function finalConsumption() {
   clearTimeout(wormholeTimeout);
   wormholeTimeout = null;
-  stopWormholeSound();
 
   const overlay = document.getElementById('wormhole-overlay');
   const txt = overlay?.querySelector('.wormhole-text');
