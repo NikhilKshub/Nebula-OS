@@ -395,7 +395,23 @@ function fakeReboot() {
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
       }
 
-      document.getElementById('wormhole-overlay').style.display = 'none';
+      // reset overlay fully so next activation starts clean
+      const overlay = document.getElementById('wormhole-overlay');
+      if (overlay) {
+        overlay.style.display = 'none';
+        overlay.style.background = '';
+        overlay.style.transition = '';
+        overlay.style.pointerEvents = '';
+        const stage = overlay.querySelector('.wormhole-stage');
+        if (stage) stage.classList.remove('active');
+        const core = overlay.querySelector('.wormhole-core');
+        if (core) { core.classList.remove('expanding'); core.style.transform = ''; }
+        const txt = overlay.querySelector('.wormhole-text');
+        if (txt) { txt.style.opacity = ''; txt.style.transition = ''; }
+        const sub = overlay.querySelector('.wormhole-sub');
+        if (sub) { sub.style.opacity = ''; sub.style.transition = ''; }
+      }
+
       singularityActive = false;
 
       const desktop = document.getElementById('desktop');
@@ -1851,8 +1867,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.ctx-item').forEach(item => {
     item.addEventListener('click', () => {
       const action = item.dataset.action;
-      if (action === 'replace-bg') document.getElementById('bg-file-input')?.click();
-      else if (action === 'refresh') fakeReboot();
+      if (action === 'refresh') fakeReboot();
       else if (action === 'arrange') arrangeWindows();
       else if (action === 'wallpaper') document.getElementById('wallpaper-input')?.click();
       else if (action === 'about') alert('NEBULA OS v1.0\nBuilt for Hack Club Stardance\n\nNeo-Brutalist WebOS');
