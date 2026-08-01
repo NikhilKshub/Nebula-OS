@@ -402,12 +402,15 @@ function fakeReboot() {
       desktop.style.display = 'none';
       desktop.style.animation = 'none';
 
+      document.querySelectorAll('.window').forEach(w => w.style.display = 'none');
+
       document.querySelectorAll('.window, .desk-icon, .widget, #dock, #topbar').forEach(el => {
         el.style.visibility = '';
         el.style.opacity = '';
       });
 
-      saveOpenWindows();
+      // wormhole is a fresh start — clear saved windows so nothing reopens on reboot
+      lsSet('nebula_open_windows', JSON.stringify([]));
 
       const boot = document.getElementById('boot-screen');
       const fill = document.querySelector('.boot-fill');
