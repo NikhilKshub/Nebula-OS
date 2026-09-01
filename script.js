@@ -986,7 +986,7 @@ function simulateHack(){
   }, i * 500));
 }
 
-// --- calculator ---
+// calculator 
 let calcCurrent = '0', calcPrev = null, calcOp = null, calcReset = false;
 
 function initCalculator() {
@@ -1799,7 +1799,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn = win.querySelector('.btn-max');
 
       if (win.classList.contains('maximized')) {
-        // Restore the exact size and position from before maximizing.
         win.classList.remove('maximized');
 
         win.style.width = win.dataset.prevWidth || win.dataset.defaultW + 'px';
@@ -1811,7 +1810,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         enforceWindowBounds(win);
       } else {
-        // Save the complete normal-window geometry before maximizing.
         win.dataset.prevTop = win.style.top || win.offsetTop + 'px';
         win.dataset.prevLeft = win.style.left || win.offsetLeft + 'px';
         win.dataset.prevWidth = win.style.width || win.offsetWidth + 'px';
@@ -1823,8 +1821,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       bringToFront(win);
-
-      // Canvas apps need a frame to recalculate their new dimensions.
       if (win.id === 'window-paint') setTimeout(initPaint, 100);
       if (win.id === 'window-game') setTimeout(initGame, 100);
     });
