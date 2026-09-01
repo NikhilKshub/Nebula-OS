@@ -1,129 +1,214 @@
-# **Nebula OS**
+# Nebula OS
 
->Built for the **Hack Club Stardance WebOS Challenge**
+**A browser-based desktop experience inspired by operating-system interfaces — built entirely with HTML, CSS, and vanilla JavaScript.**
 
-Nebula OS is a browser-based desktop experience inspired by operating systems — built as a playful, colorful desktop full of working apps, hidden details, and one feature that pulls the whole thing into a blackhole. 
+Nebula OS is a fully self-contained web desktop that runs in any modern browser. No frameworks, no build tools, no installation required. It features a suite of interactive apps, a working terminal, persistent state via `localStorage`, and a wormhole singularity effect that pulls the entire desktop into a black hole.
 
-## Gallery
+---
 
-![Nebula OS Desktop](assets/latest%20webos%20images/main1.png)
+## Screenshots
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/terminal.png" width="400"><br>
-      <sub><b>Terminal</b></sub>
-    </td>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/music.png" width="400"><br>
-      <sub><b>Music Player</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/calc.png" width="400"><br>
-      <sub><b>Calculator</b></sub>
-    </td>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/notes.png" width="400"><br>
-      <sub><b>Notes</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/paint.png" width="400"><br>
-      <sub><b>Paint</b></sub>
-    </td>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/snake.png" width="400"><br>
-      <sub><b>Snake Game</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/timer.png" width="400"><br>
-      <sub><b>Pomodoro Timer</b></sub>
-    </td>
-    <td align="center">
-      <img src="assets/latest%20webos%20images/contextmenu.png" width="400"><br>
-      <sub><b>Right-Click Context Menu</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <img src="assets/latest%20webos%20images/wormhole.png" width="600"><br>
-      <sub><b>Wormhole / Singularity-confirmation</b></sub>
-    </td>
-  </tr>
-</table>
+| Desktop | Terminal | Music Player |
+|---|---|---|
+| ![Desktop](assets/latest%20webos%20images/main1.png) | ![Terminal](assets/latest%20webos%20images/terminal.png) | ![Music](assets/latest%20webos%20images/music.png) |
 
-## **Features**
+| Calculator | Notes | Paint |
+|---|---|---|
+| ![Calculator](assets/latest%20webos%20images/calc.png) | ![Notes](assets/latest%20webos%20images/notes.png) | ![Paint](assets/latest%20webos%20images/paint.png) |
 
-* **Window Management** — draggable windows with minimize, maximize, restore, focus tracking, and persistent position  
-* **Terminal** — functional command-line interface, try `help` to see available commands  
-* **Music Player** — vinyl-style player with real-time audio visualization (Web Audio API), load your own local audio files  
-* **Calculator** — desktop calculator app  
-* **Notes** — persistent text editor with local saving  
-* **Paint** — canvas-based drawing app with tools/colors, save your creations  
-* **Snake Game** — classic snake, built directly into the OS  
-* **Custom Wallpapers** — replace the desktop background with your own image, persists across sessions  
-* **Quick Notes Widget** — sticky-note style widget on the desktop, live character counter, autosaves every keystroke  
-* **Pomodoro Timer** — default 25-minute focus/break cycle, plus a custom timer mode for both focus and break sessions  
-* **Boot Sequence** — animated startup sequence  
-* **Wormhole / Singularity** — hidden in the dock, pulls the entire desktop into a blackhole
+| Snake | Focus Timer | Wormhole |
+|---|---|---|
+| ![Snake](assets/latest%20webos%20images/snake.png) | ![Timer](assets/latest%20webos%20images/timer.png) | ![Wormhole](assets/latest%20webos%20images/wormhole.png) |
 
-## **Why I built this**
+---
 
-I got to know about Stardance from Hack Club through a friend. He suggested I create projects, since I always liked creating and experimenting with things — hardware, apps, websites — but never actually finished most of them because of various issues. When my friend told me I could create things and earn rewards, it got me excited, so I joined the platform. I looked around for a while before understanding how it works, and found the Missions section. At that time, I really liked the idea of a webOS project — it sounded interesting. Around the same time, I saw a reel of someone creating a space-themed website that also had a blackhole feature. Because of these two things, I got into building a webOS, and my first real goal was to implement a blackhole feature — I just thought it would look so cool. That's how I got into this project.
+## What Is Nebula OS?
 
-## **The Redesign Journey**
+Nebula OS is **not** a real operating system. It is a web desktop simulation — a creative, browser-based project designed to look and feel like a desktop OS. Everything runs inside a single browser tab. It is built in a neo-brutalist visual style and named "Nebula" in reference to its space-inspired wormhole feature.
 
-At the start of the project, I wanted to create something inspired by space — a desktop background with orbiting planets and stars. I also built a calculator inspired by space and orbital rotation (this concept idea was mine and I actually did so much brainstorming with ai on how to implement it and use it). But working on the project started to feel boring, because the simple, minimal space theme wasn't landing the way I wanted, and the calculator design also had a lot of usability flaws. So I completely redesigned it into something different, then redesigned it again into a neo-brutalist theme — though I was still inspired by that original space-themed blackhole website. That's why I named it "Nebula," and kept the wormhole/blackhole as a core feature.
+---
 
-## **The Hardest Part**
+## Features
 
-Honestly, at the start, the hardest thing was building the space-inspired calculator. I made the numbers and operators rotate in orbit around a center screen, but the rotation actually made me dizzy, so I abandoned that direction and moved on to Nebula OS. Within Nebula OS, the hardest part was getting the wormhole feature right — giving it a proper visual feel of an actual blackhole. I still haven't fully captured that realistic feel, but I think I've gotten somewhat closer to it.
+### Window System
+- All apps open as draggable windows
+- Each window supports **minimize**, **maximize/restore**, and **close**
+- Windows have proper focus and z-index management (clicking a window brings it to front)
+- A **bottom dock** provides quick-launch access to all apps
+- **Desktop icons** launch apps on double-click
+- A **right-click context menu** on the desktop offers quick actions: refresh, arrange icons, replace wallpaper, launch terminal/calculator, and an About panel
 
-## **What My WebOS Does**
+### Terminal
+The terminal accepts typed commands and responds with formatted output. Available commands:
 
-My webOS has the features, apps, and widgets you'd expect from most webOS projects, but the standout feature — one very few or no other webOS projects have — is a blackhole that sucks the entire system into it. It's a genuinely cool moment, and I think it makes the OS feel more engaging and lively overall.
+| Command | Description |
+|---|---|
+| `help` | List all available commands |
+| `about` | Show OS info and version |
+| `whoami` | Display current user |
+| `date` | Show current date and time |
+| `uptime` | Show session uptime |
+| `ls` | List simulated filesystem entries |
+| `clear` | Clear the terminal output |
+| `echo [text]` | Print text back |
+| `hack` | Trigger a simulated hack animation |
+| `reboot` | Trigger the wormhole/reboot sequence |
+| `calc` | Open the Calculator app |
+| `music` | Open the Music Player |
+| `notes` | Open the Notes app |
+| `paint` | Open the Paint app |
+| `snake` | Open the Snake game |
+| `pomodoro` | Open the Focus Timer |
+| `matrix` | Toggle a Matrix rain effect in the terminal |
+| `neofetch` | Display a neofetch-style OS info panel |
 
-You can open several different types of apps, like Paint, Snake Game, Calculator, Pomodoro Timer, Terminal, and Music Player. You can change the desktop wallpaper to your liking, and there's also a Quick Notes widget that lets you write things down and auto-saves as you type. And of course, there's the wormhole feature — best experienced yourself.
+### Music Player
+- Load local audio files from your device (`.mp3`, `.flac`, `.wav`, etc.)
+- Files are handled entirely in-browser using the File API — nothing is uploaded to any server
+- Vinyl-style rotating record animation while playing
+- Real-time CSS audio visualizer driven by the Web Audio API
+- Playlist with track selection; supports multiple files loaded at once
+- Drag-and-drop audio loading onto the vinyl player area
+- Previous / Play-Pause / Next controls plus a volume slider
+- Playlist can be cleared at any time
 
-## **What I'd Still Improve**
+### Calculator
+- Standard desktop calculator (AC, ±, %, ÷, ×, −, +, =)
+- Decimal support
+- Calculation history display above the current value
 
-That said, I'm not fully happy with everything yet. The wormhole still isn't where I want it visually. The font system — especially for app labels — doesn't feel very refined, and the OS overall doesn't quite have a "premium" feel yet. Right now it's closer to a rainbow of colors, since every app has its own distinct color/theme, which is fun but not fully cohesive.
+### Notes
+- Rich text editor with **Bold**, *Italic*, and _Underline_ formatting
+- Content is **saved automatically to `localStorage`** and restored on next visit
 
-## **Where to Start Exploring**
+### Paint
+- Canvas-based drawing app
+- Tools: Brush, Line, Rectangle, Circle
+- Colour palette with 7 preset colours
+- Adjustable brush size (slider)
+- Undo (up to 20 steps; also Ctrl+Z)
+- Clear canvas
+- Save the current canvas as a PNG file downloaded to your device
 
-I want people to test things out themselves. The first thing I'd suggest trying is the Terminal, since it's genuinely engaging. The second is the Snake game — it's simple, but still fun. Not exactly in the heavy AAA-game world, haha.
+### Snake Game
+- Classic snake game on an HTML5 canvas
+- Arrow key controls
+- Score tracking with a persistent **high score** saved in `localStorage`
+- Start / Stop controls
 
-## **Tech Stack**
+### Focus Timer (Pomodoro)
+- Four modes: **Focus** (25 min), **Short Break** (5 min), **Long Break** (15 min), and **Custom**
+- Custom mode lets you set hours, minutes, and seconds independently for either a focus or break session
+- Progress bar shows time elapsed within the current session
+- Session counter tracks completed focus sessions; count persists via `localStorage`
+- Browser notification on session completion (requires notification permission)
 
-* **HTML5** — semantic structure, canvas  
-* **CSS3** — custom properties/variables, flexbox/grid, no external frameworks  
-* **Vanilla JavaScript** — DOM manipulation, event handling, window management, no external libraries/frameworks  
-* **Web Audio API** — music player visualizer  
-* **Web Canvas API** — paint, snake, wormhole effects  
-* **LocalStorage** — notes, wallpaper, pomodoro sessions, window state persistence
+### Custom Wallpaper
+- Right-click the desktop → **Replace Wallpaper** to pick a local image file
+- The image is stored in `localStorage` as a data URL and automatically restored on every visit
+- The image file never leaves your browser
 
-## **Installation**
+### Desktop Widgets
+- **Telemetry widget** — shows live clock, session uptime, and system status
+- **Quick Notes widget** — a sticky-note textarea on the desktop; auto-saves every keystroke to `localStorage`, with a live character counter and a clear button
 
-Nebula OS is completely self-contained. There are no build tools or dependencies required.
+### Boot Sequence
+- An animated NEBULA boot screen with a loading bar plays on every page load before the desktop appears
 
-1. Clone or download the repository.  
-2. Open `index.html` in any modern web browser.  
-3. No installation, package manager, or build step is required.
+### Wormhole / Singularity Effect
+- Accessible from the **🕳** button in the dock, or by typing `reboot` in the terminal
+- Triggers a full-screen animated wormhole/black-hole visual effect
+- A confirmation dialog warns you before any data is deleted
+- After the animation, the OS performs a simulated reboot: all windows close, `localStorage` is cleared, and the boot sequence replays
 
-That's it\!
+---
 
-## **AI Usage**
+## Technology Stack
 
-**Early Ideas:** AI was used heavily during the initial brainstorming phase to throw around wild concepts. For example, I thought of a calculator inspired by a space theme, with rotating orbits, and AI helped me develop the UI layout for that orbit-rotation calculator concept. I actually tried implementing it, but it made me physically dizzy to look at, and picking numbers on a rotating circle was almost frustrating, so I scrapped it immediately. Using AI to rapidly prototype and test these ideas helped me quickly figure out what didn't work.
+| Layer | Technology |
+|---|---|
+| Structure | HTML5 (semantic elements, `<canvas>`) |
+| Styling | CSS3 (custom properties, flexbox, grid, keyframe animations) |
+| Logic | Vanilla JavaScript — no frameworks or libraries |
+| Audio | Web Audio API (music visualizer) |
+| Graphics | Canvas API (Paint, Snake, wormhole canvas layer) |
+| Persistence | `localStorage` (notes, wallpaper, high score, pomodoro sessions) |
+| File handling | File API / FileReader (music and wallpaper — local browser only) |
+| Fonts | Google Fonts (Archivo Black, Inter, JetBrains Mono, Syne) |
+| Deployment | GitHub Pages |
 
-**Antigravity / Gemini Sessions:** I used Google's Antigravity agent and Gemini as an active pair-programming partner to build out substantial, complex systems within the OS, test many different ideas, and brainstorm. I directed the architecture and made the final calls. Specifically, the AI wrote the logic for a few features, like the wormhole and quick notes widget, and explained it to me. It also helped me remove a few features and clean up the code (including fixing a complex infinite-hang bug during the wormhole singularity sequence, and several other serious bugs).
+---
 
-**Debugging Help:** AI was my primary debugging tool for frustrating structural issues. At one point, I attempted to split my massive CSS into multiple smaller files, which completely broke the styling across the entire OS. I also ran into a persistent folder-name and path mismatch bug that broke my assets. In both cases, I fed the errors and file structures to the AI to help diagnose the root cause. Once the AI pointed out exactly where the logic was failing, I went in and personally executed the fixes and restructured the paths to get the OS stable again. It helped me fix a lot of bugs along the way, and made implementing new features smoother.
+## Running Locally
 
-**What Was Actually Mine:** While the AI did a lot of work alongside me like testing ideas, giving suggestions, and helping map out how to implement things , the product vision was entirely mine. I made all the core product decisions: choosing which features stayed and which were cut, enforcing the neo-brutalist UI redesign, and choosing the "Nebula" naming convention. I decided exactly which apps to include, how the layout should feel, and dictated the exact visual and pacing requirements for the wormhole singularity effect. I wrote codes for the implementation of features and apps , tried things and yea it was fun kind of doing it also frustrating how the bugs are coming one by one , one after another.
+Nebula OS has **no dependencies, no build step, and no server required.**
 
+```bash
+git clone https://github.com/NikhilKshub/Nebula-OS.git
+cd Nebula-OS
+```
+
+Then open `index.html` directly in any modern browser. That's it.
+
+> **Tip:** For the best experience use a Chromium-based browser (Chrome, Edge, Brave) or Firefox.
+
+---
+
+## Project Structure
+
+```
+Nebula-OS/
+├── index.html                      # All app windows and UI structure
+├── style.css                       # Design system, windows, apps, animations
+├── script.js                       # Window management, apps, terminal, wormhole logic
+├── .gitignore
+├── LICENSE
+├── .github/
+│   └── workflows/
+│       └── pages.yml               # GitHub Pages deployment workflow
+└── assets/
+    └── latest webos images/        # Screenshots used in this README
+        ├── main1.png
+        ├── terminal.png
+        ├── music.png
+        ├── calc.png
+        ├── notes.png
+        ├── paint.png
+        ├── snake.png
+        ├── timer.png
+        ├── wormhole.png
+        └── contextmenu.png
+```
+
+---
+
+## Privacy & Local File Handling
+
+Nebula OS does **not** collect, transmit, or store any user data externally.
+
+- **Music files** you load are processed in-memory by the browser's File API and are never uploaded anywhere.
+- **Wallpaper images** you set are stored as data URLs in your browser's `localStorage` on your own device only.
+- **Notes** and all other persistent data are stored in your browser's `localStorage` on your own device only.
+- There are no analytics, tracking scripts, or external API calls (except Google Fonts for typography).
+
+---
+
+## Browser Requirements
+
+| Browser | Minimum version |
+|---|---|
+| Chrome / Edge / Brave | 90+ |
+| Firefox | 88+ |
+| Safari | 14+ |
+
+Features used: CSS custom properties, CSS `backdrop-filter`, Web Audio API, Canvas API, File API, `localStorage`, CSS keyframe animations, `contenteditable`.
+
+---
+
+## License
+
+[MIT](LICENSE) — free to use, modify, and distribute.
+
+---
+
+*Built with HTML, CSS, and vanilla JavaScript. No frameworks. No build tools. Just the web.*
