@@ -163,7 +163,7 @@ function makeDraggable(win){
     dragging=true;
     offX=cx-win.offsetLeft;
     offY=cy-win.offsetTop;
-    win.style.tranition='none';
+    win.style.transition='none';
     bringToFront(win);
   }
 
@@ -278,7 +278,7 @@ function initStickyNotes(){
   if(saved) textarea.value=saved;
   if(charCount) charCount.textContent=textarea.value.length + 'chars';
   textarea.addEventListener('input',()=>{
-    lsGet('nebula_sticky_notes',textarea.value);
+    lsSet('nebula_sticky_notes',textarea.value);
     if(charCount) charCount.textContent=textarea.value.length + 'chars';
   });
 
@@ -303,7 +303,7 @@ function arrangeWindows(){
     win.style.left=pad + (i%cols) * w + 'px';
     win.style.top=60 + Math.floor(i/cols)*h + 'px';
     win.style.width= win.dataset.defaultW + 'px';
-    win.style.height=win.dataset.defaultH ='px';
+    win.style.height= (win.dataset.defaultH || 420) + 'px';
     setTimeout(()=> win.style.transition='' ,500);
   });
 }
@@ -1074,7 +1074,7 @@ function initMusic(){
   dropZone?.addEventListener('drop', e=>{
     record?.classList.remove('drag-over');
     const audiofiles=Array.from(e.dataTransfer.files).filter(f=> f.type.startsWith('audio/'));
-    if(audiofiles.length>0) addToPlaylist(audioFiles);
+    if(audiofiles.length>0) addToPlaylist(audiofiles);
   });
 
   document.getElementById('m-play')?.addEventListener('click',toggleMusic);
@@ -1196,7 +1196,7 @@ function playTrack(idx){
     updateProgress();
   }).catch(() => {});
 
-  audioElement.addEventListener('ender', () => playTrack((currentTrackIdx + 1) % musicPlaylist.length));
+  audioElement.addEventListener('ended', () => playTrack((currentTrackIdx + 1) % musicPlaylist.length));
   audioElement.addEventListener('loadedmetadata', () => musicDuration = audioElement.duration);
 }
 
@@ -1270,7 +1270,7 @@ function initNotes(){
   if(!editor) return;
   const saved= lsGet('nebula_notes_content');
   if(saved) editor.innerHTML=saved;
-  editor.addEventListener('input',() => lsSet('nebuka_notes_content',editor.innerHTML));
+  editor.addEventListener('input',() => lsSet('nebula_notes_content',editor.innerHTML));
   document.querySelectorAll('.note-tool').forEach(tool => {
     tool.addEventListener('click',() => {
       document.execCommand(tool.dataset.cmd , false , null);

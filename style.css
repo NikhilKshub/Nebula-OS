@@ -136,7 +136,7 @@ body{
 @keyframes clockGlitch{
     0%,100%{transform:translate(0,0) skewX(0)}
     20%{transform:translate(-2px,-1px) skewX(-2deg)}
-    40%{tranform:translate(2px,-1px)skewX(2deg)}
+    40%{transform:translate(2px,-1px)skewX(2deg)}
     60%{transform:translate(-1px,-1px)skewX(1deg)}
     80%{transform:translate(1px,2px) skewX(-1deg)}
 }
@@ -743,7 +743,7 @@ gap:10px; flex:1;}
 }
 .c-btn:hover{transform:translateY(-2px); box-shadow:5px 5px 0 var(--black);}
 .c-btn:active{transform:translateY(2px); box-shadow:1px 1px 0 var(--black);}
-.c-num{background:#fff};
+.c-num{background:#fff;}
 .c-op{background:var(--yellow);}
 .c-eq{background:var(--green);}
 .c-wide{grid-column: span 2;}
