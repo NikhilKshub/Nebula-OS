@@ -4,7 +4,7 @@
 
 Nebula OS is a fully self-contained web desktop that runs in any modern browser. No frameworks, no build tools, no installation required. It features a suite of interactive apps, a working terminal, persistent state via `localStorage`, and a wormhole singularity effect that pulls the entire desktop into a black hole.
 
----
+**[Live Demo](https://nikhilkshub.github.io/Nebula-OS/)**
 
 ## Screenshots
 
@@ -20,23 +20,25 @@ Nebula OS is a fully self-contained web desktop that runs in any modern browser.
 |---|---|---|
 | ![Snake](assets/latest%20webos%20images/snake.png) | ![Timer](assets/latest%20webos%20images/timer.png) | ![Wormhole](assets/latest%20webos%20images/wormhole.png) |
 
----
 
-## What Is Nebula OS?
+## What is Nebula OS?
 
-Nebula OS is **not** a real operating system. It is a web desktop simulation — a creative, browser-based project designed to look and feel like a desktop OS. Everything runs inside a single browser tab. It is built in a neo-brutalist visual style and named "Nebula" in reference to its space-inspired wormhole feature.
-
----
+Nebula OS is **not a real operating system**. It is a browser-based desktop.
+Everything runs inside the browser, so there is nothing to install and no backend running behind it. I built the interface to behave more like a desktop than a normal website, with draggable windows, a dock, a terminal, desktop icons and small system-style interactions.
+The project started as a simple space-themed idea. As I kept working on it, I felt that it looked more like a collection of web pages than an operating system. I ended up rebuilding a large part of it and focused much more on the desktop experience itself.
+The final version uses a neo-brutalist visual style.
 
 ## Features
 
-### Window System
-- All apps open as draggable windows
-- Each window supports **minimize**, **maximize/restore**, and **close**
-- Windows have proper focus and z-index management (clicking a window brings it to front)
-- A **bottom dock** provides quick-launch access to all apps
-- **Desktop icons** launch apps on double-click
-- A **right-click context menu** on the desktop offers quick actions: refresh, arrange icons, replace wallpaper, launch terminal/calculator, and an About panel
+### Desktop
+The desktop is the main part of the project.
+- Draggable application windows
+- Minimize, maximize/restore and close controls
+- Window focus and z-index handling
+- Bottom application dock
+- Custom wallpaper support
+- Animated boot sequence
+- and almost similar to how a basic desktop works
 
 ### Terminal
 The terminal accepts typed commands and responds with formatted output. Available commands:
@@ -63,99 +65,83 @@ The terminal accepts typed commands and responds with formatted output. Availabl
 | `neofetch` | Display a neofetch-style OS info panel |
 
 ### Music Player
-- Load local audio files from your device (`.mp3`, `.flac`, `.wav`, etc.)
-- Files are handled entirely in-browser using the File API — nothing is uploaded to any server
-- Vinyl-style rotating record animation while playing
-- Real-time CSS audio visualizer driven by the Web Audio API
-- Playlist with track selection; supports multiple files loaded at once
-- Drag-and-drop audio loading onto the vinyl player area
-- Previous / Play-Pause / Next controls plus a volume slider
-- Playlist can be cleared at any time
+- Load local music files directly from the browser
+- Drag and drop audio files
+- Play, pause, previous and next controls and volume control
+- Vinyl-style player animation
 
 ### Calculator
-- Standard desktop calculator (AC, ±, %, ÷, ×, −, +, =)
-- Decimal support
-- Calculation history display above the current value
+- Standard desktop calculator
+- Basic arithmetic
+- Decimal numbers
+- Percentage
 
 ### Notes
 - Rich text editor with **Bold**, *Italic*, and _Underline_ formatting
-- Content is **saved automatically to `localStorage`** and restored on next visit
 
 ### Paint
 - Canvas-based drawing app
-- Tools: Brush, Line, Rectangle, Circle
-- Colour palette with 7 preset colours
-- Adjustable brush size (slider)
-- Undo (up to 20 steps; also Ctrl+Z)
-- Clear canvas
-- Save the current canvas as a PNG file downloaded to your device
+- Tools like Brush, Line, Rectangle and Circle
+- Multiple color options
+- Adjustable brush size 
+- Clear canvas feature to complete remove everything on canvas
+- You can also save the current canvas as a PNG file downloaded to your device
 
 ### Snake Game
-- Classic snake game on an HTML5 canvas
+- Classic snake game
 - Arrow key controls
-- Score tracking with a persistent **high score** saved in `localStorage`
-- Start / Stop controls
-
+- Score tracking with a Persistent high score
+  
 ### Focus Timer (Pomodoro)
 - Four modes: **Focus** (25 min), **Short Break** (5 min), **Long Break** (15 min), and **Custom**
 - Custom mode lets you set hours, minutes, and seconds independently for either a focus or break session
-- Progress bar shows time elapsed within the current session
-- Session counter tracks completed focus sessions; count persists via `localStorage`
-- Browser notification on session completion (requires notification permission)
+- Progress bar
+- Session counter tracks completed focus sessions
 
 ### Custom Wallpaper
-- Right-click the desktop → **Replace Wallpaper** to pick a local image file
-- The image is stored in `localStorage` as a data URL and automatically restored on every visit
+- Right-click the desktop → **Replace Wallpaper** to pick your own choice of wallpaper
 - The image file never leaves your browser
 
 ### Desktop Widgets
 - **Telemetry widget** — shows live clock, session uptime, and system status
-- **Quick Notes widget** — a sticky-note textarea on the desktop; auto-saves every keystroke to `localStorage`, with a live character counter and a clear button
+- **Quick Notes widget** — a sticky-note on the desktop that lets you write anything
+  
+### Wormhole / Singularity
+This is the most unusual part of the project.
+The singularity is a full-screen effect where the desktop gets pulled towards a black hole.
+It can be triggered from the dock or through the terminal.
+I wanted this to feel less like a normal page transition and more like the desktop itself was breaking apart.
 
-### Boot Sequence
-- An animated NEBULA boot screen with a loading bar plays on every page load before the desktop appears
+## How I built it
+There is no React, no backend and no build system.
+The three main files are:
 
-### Wormhole / Singularity Effect
-- Accessible from the **🕳** button in the dock, or by typing `reboot` in the terminal
-- Triggers a full-screen animated wormhole/black-hole visual effect
-- A confirmation dialog warns you before any data is deleted
-- After the animation, the OS performs a simulated reboot: all windows close, `localStorage` is cleared, and the boot sequence replays
+- `index.html` for the desktop and application structure
+- `style.css` for the visual design and animations
+- `script.js` for the application logic and interactions
 
----
+Most of the work went into making these three files work together.
+The project uses browser APIs where they actually make sense. For example, Paint and Snake use `<canvas>`, the music visualizer uses the Web Audio API, and local files are handled with the browser's File API. 
 
 ## Technology Stack
 
 | Layer | Technology |
 |---|---|
-| Structure | HTML5 (semantic elements, `<canvas>`) |
-| Styling | CSS3 (custom properties, flexbox, grid, keyframe animations) |
-| Logic | Vanilla JavaScript — no frameworks or libraries |
-| Audio | Web Audio API (music visualizer) |
-| Graphics | Canvas API (Paint, Snake, wormhole canvas layer) |
-| Persistence | `localStorage` (notes, wallpaper, high score, pomodoro sessions) |
-| File handling | File API / FileReader (music and wallpaper — local browser only) |
-| Fonts | Google Fonts (Archivo Black, Inter, JetBrains Mono, Syne) |
+| Structure | HTML5 |
+| Styling | CSS3 |
+| Logic | Vanilla JavaScript |
+| Audio | Web Audio API |
+| Graphics | Canvas API |
+| Persistence | `localStorage` |
+| File handling | File API / FileReader |
+| Fonts | Google Fonts
 | Deployment | GitHub Pages |
 
----
-
 ## Running Locally
-
-Nebula OS has **no dependencies, no build step, and no server required.**
-
-```bash
-git clone https://github.com/NikhilKshub/Nebula-OS.git
-cd Nebula-OS
-```
-
-Then open `index.html` directly in any modern browser. That's it.
-
-> **Tip:** For the best experience use a Chromium-based browser (Chrome, Edge, Brave) or Firefox.
-
----
+Nebula OS does not have any dependencies or a build step.
+Clone the repository, open `index.html` in a web browser, and launch Nebula OS.
 
 ## Project Structure
-
 ```
 Nebula-OS/
 ├── index.html                      # All app windows and UI structure
@@ -176,39 +162,33 @@ Nebula-OS/
         ├── paint.png
         ├── snake.png
         ├── timer.png
-        ├── wormhole.png
-        └── contextmenu.png
+        └── wormhole.png
 ```
 
----
+## Privacy & Local Data
+Nebula OS does not have a backend and does not send user data to a server.
+- Music files are loaded locally through the browser
+- Notes, wallpaper data and game data are stored locally in the browser
+- No analytics or tracking are included
+- The finished application does not use external AI or other API services
 
-## Privacy & Local File Handling
+## AI Usage
+I used AI during the development of Nebula OS, but the application itself does not use an AI API.
+I used ChatGPT and Gemini at different points as development assistants. They were mainly useful for:
+Brainstorming ideas and features
+Helping me implement features like the Singularity feature , vinyl animation in music app
+Explaining JavaScript and browser APIs when I got stuck
+Finding bugs and suggesting fixes
+Reviewing parts of the code
+Helping with refactoring and cleanup
 
-Nebula OS does **not** collect, transmit, or store any user data externally.
+AI also suggested code in some parts of the project. Which i was able to use but in many of them it was either not working perfectly with the other codes in the files , sometimes showing console errors , getting stuck on animation and other things so i had to solve it somehow also taking the help of the AI so no more errors get created 
 
-- **Music files** you load are processed in-memory by the browser's File API and are never uploaded anywhere.
-- **Wallpaper images** you set are stored as data URLs in your browser's `localStorage` on your own device only.
-- **Notes** and all other persistent data are stored in your browser's `localStorage` on your own device only.
-- There are no analytics, tracking scripts, or external API calls (except Google Fonts for typography).
+The design direction, feature decisions, how the applications should behave, the visual style, and the final integration and testing were decisions I made while building the project. Though there were designs/animations , features that were suggested by the AI but I was the one deciding what to implement or not 
 
----
-
-## Browser Requirements
-
-| Browser | Minimum version |
-|---|---|
-| Chrome / Edge / Brave | 90+ |
-| Firefox | 88+ |
-| Safari | 14+ |
-
-Features used: CSS custom properties, CSS `backdrop-filter`, Web Audio API, Canvas API, File API, `localStorage`, CSS keyframe animations, `contenteditable`.
-
----
+AI was a great help for me helping me figure out animations , solving bugs that were causing problems , helping brainstorm features/app ideas and other thing 
+I am including this section because I think it is more useful to be clear about where AI helped rather than pretending I never used it.
 
 ## License
-
 [MIT](LICENSE) — free to use, modify, and distribute.
 
----
-
-*Built with HTML, CSS, and vanilla JavaScript. No frameworks. No build tools. Just the web.*
