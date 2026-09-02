@@ -1,6 +1,6 @@
 # Nebula OS
 
-**A browser-based desktop experience inspired by operating-system interfaces — built entirely with HTML, CSS, and vanilla JavaScript.**
+**A browser-based desktop experience inspired by operating-system interfaces**
 
 Nebula OS is a fully self-contained web desktop that runs in any modern browser. No frameworks, no build tools, no installation required. It features a suite of interactive apps, a working terminal, persistent state via `localStorage`, and a wormhole singularity effect that pulls the entire desktop into a black hole.
 
