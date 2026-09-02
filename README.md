@@ -46,23 +46,25 @@ The terminal accepts typed commands and responds with formatted output. Availabl
 | Command | Description |
 |---|---|
 | `help` | List all available commands |
-| `about` | Show OS info and version |
-| `whoami` | Display current user |
-| `date` | Show current date and time |
+| `about` | Show information about Nebula OS |
+| `clear` | Clear the terminal screen |
+| `cowsay` | Display a cow saying "Moo." |
+| `creator` | Show information about the creator |
+| `credits` | View project credits |
+| `date` | Show the current date |
+| `echo [text]` | Echo text back |
+| `fortune` | Print a random quote |
+| `hack` | Trigger a simulated hacking animation |
+| `matrix` | Trigger Matrix rain |
+| `motd` | Display the message of the day |
+| `neofetch` | Display system information |
+| `reboot` | Restart the system |
+| `singularity` | Trigger the wormhole effect |
+| `stardust` | Print stardust |
+| `time` | Show the current time |
 | `uptime` | Show session uptime |
-| `ls` | List simulated filesystem entries |
-| `clear` | Clear the terminal output |
-| `echo [text]` | Print text back |
-| `hack` | Trigger a simulated hack animation |
-| `reboot` | Trigger the wormhole/reboot sequence |
-| `calc` | Open the Calculator app |
-| `music` | Open the Music Player |
-| `notes` | Open the Notes app |
-| `paint` | Open the Paint app |
-| `snake` | Open the Snake game |
-| `pomodoro` | Open the Focus Timer |
-| `matrix` | Toggle a Matrix rain effect in the terminal |
-| `neofetch` | Display a neofetch-style OS info panel |
+| `version` | Show the OS version |
+| `whoami` | Show user information |
 
 ### Music Player
 - Load local music files directly from the browser
