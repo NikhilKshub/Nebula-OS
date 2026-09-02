@@ -84,13 +84,13 @@ The terminal accepts typed commands and responds with formatted output. Availabl
 - Tools like Brush, Line, Rectangle and Circle
 - Multiple color options
 - Adjustable brush size 
-- Clear canvas feature to complete remove everything on canvas
-- You can also save the current canvas as a PNG file downloaded to your device
+- Clear canvas feature to completely remove everything from the canvas
+- Save the current canvas as a PNG file
 
 ### Snake Game
 - Classic snake game
 - Arrow key controls
-- Score tracking with a Persistent high score
+- Score tracking with a persistent high score
   
 ### Focus Timer (Pomodoro)
 - Four modes: **Focus** (25 min), **Short Break** (5 min), **Long Break** (15 min), and **Custom**
@@ -175,19 +175,20 @@ Nebula OS does not have a backend and does not send user data to a server.
 ## AI Usage
 I used AI during the development of Nebula OS, but the application itself does not use an AI API.
 I used ChatGPT and Gemini at different points as development assistants. They were mainly useful for:
-Brainstorming ideas and features
-Helping me implement features like the Singularity feature , vinyl animation in music app
-Explaining JavaScript and browser APIs when I got stuck
-Finding bugs and suggesting fixes
-Reviewing parts of the code
-Helping with refactoring and cleanup
 
-AI also suggested code in some parts of the project. Which i was able to use but in many of them it was either not working perfectly with the other codes in the files , sometimes showing console errors , getting stuck on animation and other things so i had to solve it somehow also taking the help of the AI so no more errors get created 
+- Brainstorming ideas and features
+- Helping me implement features like the Singularity effect and vinyl animation in the music app
+- Explaining JavaScript and browser APIs when I got stuck
+- Finding bugs and suggesting fixes
+- Reviewing parts of the code
+- Helping with refactoring and cleanup
 
-The design direction, feature decisions, how the applications should behave, the visual style, and the final integration and testing were decisions I made while building the project. Though there were designs/animations , features that were suggested by the AI but I was the one deciding what to implement or not 
+AI also suggested code for some parts of the project. I was able to use some of those suggestions, but sometimes they did not always work correctly with the rest of my code. Some caused console errors, broke animations, or needed changes to fit the existing project. I had to test the suggestions, debug the problems, and adapt the code to make everything work together.
 
-AI was a great help for me helping me figure out animations , solving bugs that were causing problems , helping brainstorm features/app ideas and other thing 
+The design direction, feature decisions, application behavior, visual style, and final integration and testing were decisions I made while building the project. AI suggested some ideas and implementations, but I decided what to keep, change, or remove.
+AI was a great help in figuring out animations, solving bugs, brainstorming features and app ideas, and understanding parts of the code.
 I am including this section because I think it is more useful to be clear about where AI helped rather than pretending I never used it.
+The finished application does not use OpenAI, Gemini, or any other AI API. It runs as a normal client-side website.
 
 ## License
 [MIT](LICENSE) — free to use, modify, and distribute.
