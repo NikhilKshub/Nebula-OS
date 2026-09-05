@@ -6,22 +6,30 @@
     <title>NEBULA OS</title>
     <link rel="stylesheet" href="style.css"/>
     <link 
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap"
-    rel="stylesheet"/>
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
   </head>
   <body>
-    <!-- boot -->
-    <div id="boot-screen">  
-      <div class="boot-content">
-        <div class="boot-logo">
-          <span>N</span><span>E</span><span>B</span><span>U</span><span>L</span
-          ><span>A</span>
-        </div>
-        <div class="boot-bar">
-          <div class="boot-fill"></div>
-        </div>
-        <div class="boot-status">INITIALIZING...</div>
+
+<!-- login -->
+    <div id="login-screen">
+      <div class="login-date">
+        <div id="login-day">SATURDAY</div>
+        <div id="login-date-text">05 SEP 2026</div>
       </div>
+
+      <div class="login-card">
+        <div class="login-logo">NEBULA</div> 
+        <div class="login-subtitle">WEB DESKTOP</div>
+
+        <button id="sign-in-btn" class="login-btn">SIGN IN</button>
+      </div>
+
+      <div class="login-quote">
+        <div class="quote-text">“A journey of a thousand miles begins with one step.”</div>
+        <div class="quote-author">— LAO TZU</div>
+      </div>
+
+      <div class="login-footer">NEBULA / BUILD 01</div>
     </div>
 <!-- desktop -->
     <div id="desktop" style="display:none">
@@ -36,7 +44,7 @@
         </div>
         <div class="topbar-right">
           <span id="date">SUN, JUN21</span>
-          <span id="clock" class="mono-font">00:00</span>
+          <span id="clock" >00:00</span>
         </div>
       </div>
 
@@ -111,16 +119,16 @@
         <div class="widget widget-telemetry">
           <div class="widget-header">TELEMETRY</div>
           <div class="telemetry-row">
-            <span class="t-label">TIME</span><span class="t-value" id="tel-time">--:--</span>            
+            <span class="t-label">TIME</span><span id="tel-time">--:--</span>            
           </div>
           <div class="telemetry-row">
-            <span class="t-label">UPTIME</span><span class="t-value" id="tel-uptime">0s</span>
+            <span class="t-label">UPTIME</span><span id="tel-uptime">0s</span>
           </div>
           <div class="telemetry-row">
-            <span class="t-label">INTEGRITY</span><span class="t-value" id="tel-integrity" style="color:var(--green)">100%</span>
+            <span class="t-label">INTEGRITY</span><span id="tel-integrity" style="color:var(--green)">100%</span>
           </div>
           <div class="telemetry-row">
-            <span class="t-label">STATUS</span><span class="t-value">NOMINAL</span>
+            <span class="t-label">STATUS</span><span>NOMINAL</span>
           </div>
         </div>
         <div class="widget widget-notes-sticky">
@@ -194,7 +202,7 @@
         </div>
       </div>
 
-      <!-- WORMHOLE OVERLAY -->
+      <!-- wormhole overlay -->
       <div id="wormhole-overlay">
         <div class="wormhole-stage">
           <div class="wormhole-core"></div>
@@ -206,7 +214,7 @@
         <div class="wormhole-text">SINGULARITY</div>
         <div class="wormhole-sub">EVERYTHING RETURN TO NOTHING</div>
       </div>
-      <!-- TERMINAL -->
+      <!--terminal-->
       <div class="window" id="window-terminal" data-default-w="520" data-default-h="380" style="top: 60px; left: 40px; display: none">
         <div class="window-header" style="background: #00ffab">
           <div class="window-title"><span class="win-icon">⌘</span><span>TERMINAL</span></div>
@@ -220,12 +228,12 @@
           <div class="terminal-output" id="term-output"></div>
           <div class="terminal-input">
             <span class="term-prompt">❯</span>
-            <input type="text" id="term-input" class="mono-font" autocomplete="off" spellcheck="false" />
+            <input type="text" id="term-input"  autocomplete="off" spellcheck="false" />
           </div>
         </div>
       </div>
 
-      <!-- MUSIC -->
+      <!-- music -->
        <div class="window" id="window-music" data-default-w="340" data-default-h="540" style="top:80px; left:400px; display:none">
         <div class="window-header" style="background:#ff004d">
           <div class="window-title"><span class="win-icon"></span><span>MUSIC</span></div>
@@ -252,8 +260,8 @@
               <div class="viz-bar"></div><div class="viz-bar"></div>
             </div>
             <div class="track-info">
-              <div class="track-name" id="track-name">ACOUSTIC VACUUM DETECTED</div>
-              <div class="track-artist" id="track-artist">AWAITING WAVEFORM INPUT</div>
+              <div class="track-name" id="track-name">NO TRACK SELECTED</div>
+              <div class="track-artist" id="track-artist">ADD MUSIC TO BEGIN</div>
             </div>
             <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
             <div class="music-controls">
@@ -280,7 +288,7 @@
        </div>
 
 
-     <!-- CALCULATOR -->
+     <!-- calculator -->
       <div class="window" id="window-calc" data-default-w="320" data-default-h="480" style="top: 120px; left: 200px; display: none">
         <div class="window-header" style="background: #ffde4d">
           <div class="window-title"><span class="win-icon">⊕</span><span>CALCULATOR</span></div>
@@ -319,7 +327,7 @@
         </div>
       </div>
 
-      <!-- NOTES -->
+      <!-- notes -->
       <div class="window" id="window-notes" data-default-w="360" data-default-h="420" style="top:100px; left:600px; display:none">
         <div class="window-header" style="background:#4d96ff">
           <div class="window-title"><span class="win-icon">✎</span><span>NOTES</span></div>
@@ -349,7 +357,7 @@
         </div>
       </div>
 
-      <!-- PAINT -->
+      <!-- paint -->
       <div class="window" id="window-paint" data-default-w="600" data-default-h="480" style="top:60px; left:300px; display:none">
         <div class="window-header" style="background:#ff6b6b">
           <div class="window-title"><span class="win-icon">🎨</span><span>PAINT</span></div>
@@ -388,7 +396,7 @@
         </div>
       </div>
 
-      <!-- SNAKE -->
+      <!-- snake -->
       <div class="window" id="window-game" data-default-w="360" data-default-h="480" style="top:40px; left:250px; display:none">
         <div class="window-header" style="background:#38e54d">
           <div class="window-title"><span class="win-icon">🎮</span><span>Snake Game</span></div>
@@ -400,8 +408,8 @@
         </div>
         <div class="window-body game-body">
           <div class="game-header">
-            <div class="game-score">SCORE: <span id="game-score">0</span></div>
-            <div class="game-high">BEST:<span id="game-high">0</span></div>
+            <div>SCORE: <span id="game-score">0</span></div>
+            <div>BEST:<span id="game-high">0</span></div>
           </div>
           <div class="game-canvas-wrap">
             <canvas id="game-canvas" width="300" height="300"></canvas>
@@ -409,12 +417,12 @@
           <div class="game-controls">
             <button class="game-btn" id="game-start">START</button>
             <button class="game-btn game-stop" id="game-stop" style="display:none">STOP</button>
-            <div class="game-hint">MANUAL OVERRRIDE: ARROW KEYS</div> 
+            <div class="game-hint">MANUAL OVERRIDE: ARROW KEYS</div> 
           </div>
         </div>
       </div>
 
-      <!-- FOCUS TIMER -->
+      <!-- focus timer -->
        <div class="window" id="window-pomodoro" data-default-w="340" data-default-h="460" style="top:80px; left:500px; display:none">
         <div class="window-header pomo-header-dark">
           <div class="window-title">
@@ -486,3 +494,4 @@
     <script src="script.js"></script>
   </body>
 </html>
+
