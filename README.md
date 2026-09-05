@@ -66,18 +66,15 @@ That's it.
 ## Why I made it
 
 I wanted to build something that felt more like a small world than a normal website.
-
 Most of the fun came from trying to make the individual parts work together: windows need to behave like windows, apps need to remember things, and the whole interface should still feel like one system.
 I ended up rebuilding a lot of the project during development because some early versions worked technically but did not feel like an operating system yet.
 
 ## AI usage
 
 I used AI tools during development, mainly ChatGPT, Claude and Gemini.
-
 I used them for brainstorming, debugging, investigating issues, discussing architecture and edge cases, reviewing/refactoring code, and getting help when I was stuck.
-
+The wormhole effect was one area where I relied more heavily on AI assistance. I used AI to help work through the animation logic, particle effects, DOM transformations, timing, and cleanup, then integrated and tested the result as part of the project.
 I still made the design, feature and implementation decisions for the project, tested the changes, and decided what actually stayed in the final version.
-
 AI was part of my development process, but Nebula OS is not an AI-powered application and does not depend on an AI API.
 
 ## Built with
