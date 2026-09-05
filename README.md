@@ -8,7 +8,7 @@ A browser-based desktop(Web-OS) I built with plain HTML, CSS and JavaScript.
 
 | Desktop | Terminal | Music Player |
 |---|---|---|
-| ![Desktop](assets/latest%20webos%20images/main1.png) | ![Terminal](assets/latest%20webos%20images/terminal.png) | ![Music](assets/latest%20webos%20images/music.png) |
+| ![Desktop](assets/latest%20webos%20images/desktop.png) | ![Terminal](assets/latest%20webos%20images/terminal.png) | ![Music](assets/latest%20webos%20images/music.png) |
 
 | Calculator | Notes | Paint |
 |---|---|---|
@@ -16,7 +16,7 @@ A browser-based desktop(Web-OS) I built with plain HTML, CSS and JavaScript.
 
 | Snake | Focus Timer | Wormhole |
 |---|---|---|
-| ![Snake](assets/latest%20webos%20images/snake.png) | ![Timer](assets/latest%20webos%20images/timer.png) | ![Wormhole](assets/latest%20webos%20images/wormhole.png) |
+| ![Snake](assets/latest%20webos%20images/snake.png) | ![Timer](assets/latest%20webos%20images/focus.png) | ![Wormhole](assets/latest%20webos%20images/wormhole.png) |
 
 
 ## What it is
