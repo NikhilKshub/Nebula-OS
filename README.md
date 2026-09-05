@@ -64,10 +64,11 @@ Clone the repository and open `index.html` in a browser.
 That's it.
 
 ## Why I made it
-
-I wanted to build something that felt more like a small world than a normal website.
-Most of the fun came from trying to make the individual parts work together: windows need to behave like windows, apps need to remember things, and the whole interface should still feel like one system.
-I ended up rebuilding a lot of the project during development because some early versions worked technically but did not feel like an operating system yet.
+I found out about Stardance through a friend, and while looking through the challenges, the WebOS challenge immediately caught my attention. I had never really thought about making an operating system that runs inside a browser before, but I liked the idea of taking something that normally feels like a part of your computer and trying to recreate that experience with just a webpage.
+My first idea for Nebula OS was very different from what it looks like now. I wanted the whole desktop to feel like a space environment, with planets moving around, orbital paths, stars, galaxies and other things happening in the background. I also came up with the wormhole idea from that concept. I thought it would be fun to have something hidden in the desktop that could basically pull everything into a wormhole and reset the system.
+The problem was that the more I tried to build the space-themed version, the more complicated it became. I kept running into problems trying to make the desktop, windows and applications fit naturally into the theme, and eventually I felt like the theme itself was getting in the way of the WebOS I actually wanted to make.
+So I ended up rebuilding a large part of Nebula OS and changed the visual direction toward a neo-brutalist style. I did not want to completely throw away the original idea, though, so some of the space-inspired parts stayed in the project, especially the wormhole. The final design is therefore not completely neo-brutalist, but it borrows elements from that style while keeping some of the ideas that came from the original space-themed version.
+In the end, I made Nebula OS because I liked the challenge of making a browser feel more like an actual desktop environment. What started as a space-themed experiment turned into a much bigger project about trying to make the whole thing feel like one little system instead of just a webpage with a bunch of apps on it.
 
 ## AI usage
 
