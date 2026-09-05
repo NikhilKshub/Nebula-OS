@@ -64,14 +64,13 @@ Clone the repository and open `index.html` in a browser.
 That's it.
 
 ## Why I made it
-I found out about Stardance through a friend, and while looking through the challenges, the WebOS challenge immediately caught my attention. I had never really thought about making an operating system that runs inside a browser before, but I liked the idea of taking something that normally feels like a part of your computer and trying to recreate that experience with just a webpage.
-My first idea for Nebula OS was very different from what it looks like now. I wanted the whole desktop to feel like a space environment, with planets moving around, orbital paths, stars, galaxies and other things happening in the background. I also came up with the wormhole idea from that concept. I thought it would be fun to have something hidden in the desktop that could basically pull everything into a wormhole and reset the system.
-The problem was that the more I tried to build the space-themed version, the more complicated it became. I kept running into problems trying to make the desktop, windows and applications fit naturally into the theme, and eventually I felt like the theme itself was getting in the way of the WebOS I actually wanted to make.
+I found out about Stardance by Hackclub through a friend, and while looking through the challenges, the WebOS challenge immediately caught my attention. I had never really thought about making an operating system that runs inside a browser before, but I liked the idea and wanted to see what I could build with it.
+My first idea for Nebula OS was very different from what it looks like now. I wanted the whole desktop to feel like a space environment, with planets moving around, orbital paths, stars, galaxies, and space-themed apps. I also came up with the wormhole idea from that concept. Around the same time, I saw a reel of someone creating a wormhole effect in their own space-themed website, which also inspired me to try something similar. I thought it would be fun to have something hidden in the desktop that could basically pull everything into a wormhole and reset the system.
+The problem was that the more I tried to build the space-themed version, the more complicated it became. I kept running into problems trying to make the desktop, windows, and applications fit naturally into the theme, and eventually I felt like the theme itself was getting in the way of the WebOS I actually wanted to make.
 So I ended up rebuilding a large part of Nebula OS and changed the visual direction toward a neo-brutalist style. I did not want to completely throw away the original idea, though, so some of the space-inspired parts stayed in the project, especially the wormhole. The final design is therefore not completely neo-brutalist, but it borrows elements from that style while keeping some of the ideas that came from the original space-themed version.
-In the end, I made Nebula OS because I liked the challenge of making a browser feel more like an actual desktop environment. What started as a space-themed experiment turned into a much bigger project about trying to make the whole thing feel like one little system instead of just a webpage with a bunch of apps on it.
+In the end, I made Nebula OS 
 
 ## AI usage
-
 I used AI tools during development, mainly ChatGPT, Claude and Gemini.
 I used them for brainstorming, debugging, investigating issues, discussing architecture and edge cases, reviewing/refactoring code, and getting help when I was stuck.
 The wormhole effect was one area where I relied more heavily on AI assistance. I used AI to help work through the animation logic, particle effects, DOM transformations, timing, and cleanup, then integrated and tested the result as part of the project.
